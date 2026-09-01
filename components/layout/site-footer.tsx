@@ -30,8 +30,8 @@ export function SiteFooter() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="relative z-40 flex h-svh min-h-svh w-full flex-col bg-ink text-white lg:snap-start">
-      <div className="mx-auto grid w-full max-w-6xl flex-1 grid-cols-1 content-start gap-12 px-6 pt-[calc(var(--header-height)+2.5rem)] md:grid-cols-4 md:gap-10 md:px-12">
+    <footer className="relative z-40 flex min-h-svh w-full flex-col bg-ink text-white lg:snap-start">
+      <div className="mx-auto grid w-full max-w-6xl flex-1 grid-cols-1 content-start gap-10 px-5 pt-[calc(var(--header-height)+1.5rem)] sm:grid-cols-2 sm:gap-10 sm:px-8 md:grid-cols-4 md:px-12 md:pt-[calc(var(--header-height)+2.5rem)]">
         <div>
           <BrandMark inverted />
           <p className="mt-5 text-base font-medium">{site.name}</p>
@@ -46,10 +46,10 @@ export function SiteFooter() {
 
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange">Naviguer</p>
-          <ul className="mt-5 space-y-3.5">
+          <ul className="mt-5 space-y-3">
             {footerNavigate.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-base hover:underline">
+                <Link href={item.href} className="text-base text-white/85 hover:text-white hover:underline">
                   {item.label}
                 </Link>
               </li>
@@ -59,10 +59,10 @@ export function SiteFooter() {
 
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange">Agir</p>
-          <ul className="mt-5 space-y-3.5">
+          <ul className="mt-5 space-y-3">
             {footerAct.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-base hover:underline">
+                <Link href={item.href} className="text-base text-white/85 hover:text-white hover:underline">
                   {item.label}
                 </Link>
               </li>
@@ -72,12 +72,12 @@ export function SiteFooter() {
 
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange">Nous joindre</p>
-          <ul className="mt-5 space-y-3.5 text-base text-white/80">
-            <li>WhatsApp : {site.whatsapp}</li>
-            <li>E-mail : {site.email}</li>
-            <li>Adresse du siège : {site.address}</li>
+          <ul className="mt-5 space-y-3 text-base text-white/80">
+            <li className="break-words">WhatsApp : {site.whatsapp}</li>
+            <li className="break-all sm:break-normal">E-mail : {site.email}</li>
+            <li className="break-words">Adresse : {site.address}</li>
           </ul>
-          <div className="mt-8 flex items-center gap-3">
+          <div className="mt-6 sm:mt-8 flex items-center gap-3">
             {socialLinks.map((item) => {
               const icon = socialIcons[item.label as keyof typeof socialIcons]
               return (
@@ -85,7 +85,7 @@ export function SiteFooter() {
                   key={item.label}
                   href={item.href}
                   aria-label={item.label}
-                  className="grid size-9 place-items-center rounded-full hover:bg-teal/40"
+                  className="grid size-10 place-items-center rounded-full bg-white/5 transition hover:bg-teal/40"
                 >
                   <HugeiconsIcon icon={icon} strokeWidth={2} className="size-4" />
                 </Link>
@@ -95,8 +95,8 @@ export function SiteFooter() {
         </div>
       </div>
 
-      <div className="mt-auto px-6 pb-8 pt-24 text-xs text-white/55 md:px-12 md:pb-10 md:pt-32">
-        <div className="mx-auto flex max-w-6xl flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <div className="mt-10 px-5 pb-12 pt-6 text-xs text-white/55 sm:mt-auto sm:px-8 sm:pb-10 sm:pt-10 md:px-12">
+        <div className="mx-auto flex max-w-6xl flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <p>
             © {year} {site.name}. Tous droits réservés.
           </p>

@@ -66,12 +66,12 @@ function SheetContent({
             render={
               <Button
                 variant="ghost"
-                className="absolute top-4 right-4"
-                size="icon-sm"
+                className="absolute top-3.5 right-3.5 size-9 rounded-full"
+                size="icon"
               />
             }
           >
-            <HugeiconsIcon icon={Cancel01Icon} strokeWidth={2} />
+            <HugeiconsIcon icon={Cancel01Icon} strokeWidth={2} className="size-5" />
             <span className="sr-only">Close</span>
           </SheetPrimitive.Close>
         )}

@@ -102,7 +102,7 @@ export function InquiryForm({ defaultSubject, className }: InquiryFormProps) {
   return (
     <form
       onSubmit={onSubmit}
-      className={cn("rounded-[1.75rem] bg-white p-6 ring-1 ring-ink/8 sm:p-8", className)}
+      className={cn("rounded-[1.5rem] bg-white p-5 ring-1 ring-ink/8 sm:rounded-[1.75rem] sm:p-8", className)}
     >
       <p className="text-[11px] font-semibold tracking-[0.2em] text-teal uppercase">
         Une seule adresse pour toutes les démarches
@@ -110,7 +110,7 @@ export function InquiryForm({ defaultSubject, className }: InquiryFormProps) {
       <h3 className="mt-2 text-2xl tracking-tight md:text-3xl">{copy.title}</h3>
       <p className="mt-2 max-w-xl text-base leading-relaxed text-ink/60">{copy.text}</p>
 
-      <div className="mt-8 grid gap-5 sm:grid-cols-2">
+      <div className="mt-6 sm:mt-8 grid gap-4 sm:gap-5 sm:grid-cols-2">
         <Field id="subject" label="Votre démarche" className="sm:col-span-2">
           <SelectControl
             id="subject"
@@ -210,7 +210,7 @@ export function InquiryForm({ defaultSubject, className }: InquiryFormProps) {
             id="message"
             name="message"
             required
-            rows={6}
+            rows={5}
             placeholder={copy.messagePlaceholder}
             className={fieldAreaClass}
           />
@@ -230,7 +230,7 @@ export function InquiryForm({ defaultSubject, className }: InquiryFormProps) {
         <Button
           type="submit"
           disabled={status === "submitting"}
-          className="h-12 rounded-full px-7 text-base sm:min-w-52"
+          className="h-12 w-full rounded-full px-7 text-base font-semibold sm:w-auto sm:min-w-52"
         >
           {status === "submitting" ? "Envoi…" : copy.submit}
         </Button>

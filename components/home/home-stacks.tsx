@@ -24,10 +24,10 @@ export function HomeStacks() {
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-teal">
               Notre principe
             </p>
-            <h2 className="mt-4 max-w-3xl text-3xl md:text-5xl">
+            <h2 className="mt-3 sm:mt-4 max-w-3xl text-2xl sm:text-3xl md:text-5xl">
               Nous progressons ensemble
             </h2>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-muted-foreground">
               Nous ne voulons pas nous limiter à la solidarité ponctuelle. Nous
               voulons transformer progressivement cette solidarité en formation,
               en accompagnement, en connexion et en opportunités concrètes. Aider
@@ -48,10 +48,10 @@ export function HomeStacks() {
         <ImageField name="crowd" label={site.baseline} />
         <PanelContent className="justify-end">
           <FadeIn>
-            <h2 className="max-w-3xl text-4xl leading-[1.05] text-white md:text-6xl lg:text-7xl">
+            <h2 className="max-w-3xl text-3xl leading-[1.08] text-white sm:text-4xl md:text-6xl lg:text-7xl">
               {site.baseline}
             </h2>
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
+            <p className="mt-4 sm:mt-5 max-w-xl text-base leading-relaxed text-white/75 sm:text-lg">
               Nous commençons ensemble à Douala. La solidarité ouvre le chemin.
               La formation et l&apos;accompagnement le prolongent.
             </p>
@@ -65,15 +65,15 @@ export function HomeStacks() {
       </StackPanel>
 
       <StackPanel theme="muted" pin={false}>
-        <div className="mx-auto w-full max-w-6xl px-6 pt-[calc(var(--header-height)+1.25rem)] pb-20 md:px-12">
+        <div className="mx-auto w-full max-w-6xl px-4 pt-[calc(var(--header-height)+1rem)] pb-16 sm:px-6 sm:pb-20 md:px-12">
           <FadeIn>
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-teal">
               Ce que nous faisons
             </p>
-            <h2 className="mt-4 max-w-3xl text-3xl md:text-5xl">
+            <h2 className="mt-3 sm:mt-4 max-w-3xl text-2xl sm:text-3xl md:text-5xl">
               Cinq axes, une seule direction
             </h2>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+            <p className="mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-muted-foreground">
               Donner à chacun les moyens de construire une meilleure situation.
               La solidarité ouvre le chemin. La formation et l&apos;accompagnement
               le prolongent. Les talents et la jeunesse en sont l&apos;horizon.
@@ -97,10 +97,10 @@ export function HomeStacks() {
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-orange">
                     Comment nous créons de l&apos;impact · 0{index + 1}
                   </p>
-                  <h2 className="mt-4 max-w-2xl text-4xl md:text-6xl">
+                  <h2 className="mt-3 sm:mt-4 max-w-2xl text-3xl sm:text-4xl md:text-6xl">
                     {step.title}
                   </h2>
-                  <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
+                  <p className="mt-4 sm:mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-white/80">
                     {step.text}
                   </p>
                 </FadeIn>
@@ -114,10 +114,10 @@ export function HomeStacks() {
         <ImageField name="hands" overlay={false} className="opacity-30" />
         <PanelContent>
           <FadeIn>
-            <h2 className="max-w-3xl text-3xl md:text-5xl">
+            <h2 className="max-w-3xl text-2xl sm:text-3xl md:text-5xl">
               Être membre, c&apos;est participer et contribuer
             </h2>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
+            <p className="mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-white/75">
               Un membre de The Pressing Community participe aux activités, accède
               aux formations et à l&apos;accompagnement, propose des initiatives et
               développe ses projets. Mais l&apos;adhésion n&apos;est pas seulement un
@@ -146,10 +146,10 @@ export function HomeStacks() {
                   <p className="text-xs font-semibold uppercase tracking-[0.24em] text-orange">
                     Nous soutenir
                   </p>
-                  <h2 className="mt-4 max-w-2xl text-4xl md:text-6xl">
+                  <h2 className="mt-3 sm:mt-4 max-w-2xl text-3xl sm:text-4xl md:text-6xl">
                     {card.title}
                   </h2>
-                  <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
+                  <p className="mt-4 sm:mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-white/80">
                     {card.text}
                   </p>
                   {card.href ? (
@@ -169,10 +169,10 @@ export function HomeStacks() {
       <StackPanel theme="teal">
         <PanelContent className="items-center text-center">
           <FadeIn>
-            <h2 className="mx-auto max-w-3xl text-3xl md:text-5xl">
+            <h2 className="mx-auto max-w-3xl text-2xl sm:text-3xl md:text-5xl">
               Comment pouvons-nous réussir ensemble ?
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/80">
+            <p className="mx-auto mt-4 sm:mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-white/80">
               Une personne peut changer sa vie grâce à une opportunité. Une
               communauté peut en créer des milliers. Rejoignez-nous à Douala —
               ou soutenez ce que nous construisons, où que vous soyez.

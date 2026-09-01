@@ -15,13 +15,13 @@ export function PartnerView() {
         <ImageField name="team" label="Devenir partenaire" priority />
         <PanelContent className="items-center justify-end text-center">
           <FadeIn>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-orange">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-orange">
               Nous soutenir
             </p>
-            <h1 className="mx-auto mt-5 max-w-4xl text-4xl text-balance md:text-6xl">
+            <h1 className="mx-auto mt-4 sm:mt-5 max-w-4xl text-3xl leading-[1.08] text-balance sm:text-5xl md:text-6xl">
               Devenir partenaire
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
+            <p className="mx-auto mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-white/75">
               Entreprises, institutions, associations : construisons un projet
               commun. Une formation, une action de terrain, un mécénat de
               compétences — pas seulement un logo sur une affiche.
@@ -30,9 +30,9 @@ export function PartnerView() {
         </PanelContent>
       </StackPanel>
 
-      <StackPanel theme="white">
+      <StackPanel theme="white" pin={false}>
         <div className="grid min-h-svh md:grid-cols-2">
-          <div className="relative min-h-[42vh] md:min-h-svh">
+          <div className="relative min-h-[35vh] sm:min-h-[42vh] md:min-h-svh">
             <ImageField
               name="meeting"
               label="Avec qui nous travaillons"
@@ -45,15 +45,15 @@ export function PartnerView() {
               <p className="text-xs font-semibold uppercase tracking-[0.24em] text-teal">
                 Avec qui nous travaillons
               </p>
-              <h2 className="mt-4 max-w-xl text-3xl md:text-5xl">
+              <h2 className="mt-3 sm:mt-4 max-w-xl text-2xl sm:text-3xl md:text-5xl">
                 Un partenariat se définit par un projet
               </h2>
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-4 sm:mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-muted-foreground">
                 Nous cherchons des alliés capables de créer un impact concret
                 pour nos membres : ouvrir une session de formation, accueillir
                 une action, prêter des compétences, relayer une opportunité.
               </p>
-              <p className="mt-4 max-w-xl text-lg leading-relaxed text-muted-foreground">
+              <p className="mt-3 sm:mt-4 max-w-xl text-base sm:text-lg leading-relaxed text-muted-foreground">
                 Écrivez-nous depuis la page contact et choisissez « Partenariat ».
                 Nous vous répondons pour en discuter, pas pour remplir une liste
                 d’attente.

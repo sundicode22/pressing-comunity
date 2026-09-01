@@ -13,7 +13,7 @@ export function SnapSlide({ theme, className, children }: SnapSlideProps) {
     <div
       data-snap-slide
       className={cn(
-        "relative h-full w-full min-w-full shrink-0 overflow-hidden",
+        "relative min-h-svh h-full w-full min-w-full shrink-0 overflow-hidden",
         theme ? themeClass(theme) : null,
         className
       )}

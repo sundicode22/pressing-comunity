@@ -100,7 +100,7 @@ function SectionBody({
   const paragraphs = Array.isArray(body) ? body : [body]
 
   return (
-    <div className={cn("mt-6 max-w-xl space-y-4 text-lg leading-relaxed opacity-75", className)}>
+    <div className={cn("mt-4 sm:mt-6 max-w-xl space-y-3 sm:space-y-4 text-base sm:text-lg leading-relaxed opacity-75", className)}>
       {paragraphs.map((paragraph) => (
         <p key={paragraph.slice(0, 48)}>{paragraph}</p>
       ))}
@@ -117,17 +117,17 @@ function SectionInner({
 }) {
   return (
     <FadeIn>
-      <h2 className="max-w-3xl text-3xl md:text-5xl">{section.title}</h2>
+      <h2 className="max-w-3xl text-2xl sm:text-3xl md:text-5xl">{section.title}</h2>
       {section.subtitle ? (
-        <p className="mt-3 text-sm uppercase tracking-[0.2em] opacity-50">
+        <p className="mt-2 sm:mt-3 text-xs sm:text-sm uppercase tracking-[0.2em] opacity-50">
           {section.subtitle}
         </p>
       ) : null}
       <SectionBody body={section.body} />
       {section.items?.length ? (
-        <ul className="mt-8 grid max-w-xl gap-3 text-base opacity-80">
+        <ul className="mt-6 sm:mt-8 grid max-w-xl gap-2.5 sm:gap-3 text-sm sm:text-base opacity-80">
           {section.items.map((item) => (
-            <li key={item.title} className="border-b border-current/10 pb-3">
+            <li key={item.title} className="border-b border-current/10 pb-2.5 sm:pb-3">
               <span className="font-medium">{item.title}</span>
               {item.text ? <span className="opacity-70"> — {item.text}</span> : null}
             </li>
@@ -153,14 +153,14 @@ export function PagePlaceholder({
         {cover ? <ImageField name={cover} label={title} priority /> : null}
         <PanelContent className={cover ? "items-center justify-end text-center" : "items-center text-center"}>
           <FadeIn>
-            <p className="text-xs font-semibold uppercase tracking-[0.28em] text-orange">
+            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-orange">
               The Pressing Community
             </p>
-            <h1 className="mx-auto mt-5 max-w-4xl text-4xl leading-[1.05] text-balance md:text-6xl">
+            <h1 className="mx-auto mt-4 sm:mt-5 max-w-4xl text-3xl leading-[1.08] text-balance sm:text-5xl md:text-6xl">
               {title}
             </h1>
             {subtitle ? (
-              <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed opacity-75">
+              <p className="mx-auto mt-4 sm:mt-6 max-w-2xl text-base leading-relaxed opacity-75 sm:text-lg">
                 {subtitle}
               </p>
             ) : null}
@@ -183,7 +183,7 @@ export function PagePlaceholder({
               />
               <PanelContent className="justify-end">
                 <FadeIn>
-                  <h2 className="max-w-xl text-3xl md:text-5xl">{section.title}</h2>
+                  <h2 className="max-w-xl text-2xl sm:text-3xl md:text-5xl">{section.title}</h2>
                   <SectionBody body={section.body} className="text-white/75" />
                   <Ctas ctas={section.ctas} inverted />
                 </FadeIn>
@@ -201,7 +201,7 @@ export function PagePlaceholder({
               pin={false}
             >
               <div className="grid min-h-svh md:grid-cols-2">
-                <div className="relative min-h-[42vh] md:min-h-svh">
+                <div className="relative min-h-[35vh] sm:min-h-[42vh] md:min-h-svh">
                   <ImageField
                     name={section.image}
                     label={section.title}
@@ -225,11 +225,11 @@ export function PagePlaceholder({
               theme={sectionTheme}
               pin={false}
             >
-              <div className="mx-auto w-full max-w-6xl px-6 pt-[calc(var(--header-height)+1.25rem)] pb-20 md:px-12">
+              <div className="mx-auto w-full max-w-6xl px-4 pt-[calc(var(--header-height)+1rem)] pb-16 sm:px-6 sm:pb-20 md:px-12">
                 <FadeIn>
-                  <h2 className="max-w-3xl text-3xl md:text-5xl">{section.title}</h2>
+                  <h2 className="max-w-3xl text-2xl sm:text-3xl md:text-5xl">{section.title}</h2>
                   {section.subtitle ? (
-                    <p className="mt-3 text-sm uppercase tracking-[0.2em] opacity-50">
+                    <p className="mt-2 sm:mt-3 text-xs sm:text-sm uppercase tracking-[0.2em] opacity-50">
                       {section.subtitle}
                     </p>
                   ) : null}
@@ -270,9 +270,9 @@ export function PagePlaceholder({
                           >
                             {section.title} · 0{itemIndex + 1}
                           </p>
-                          <h2 className="mt-4 max-w-2xl text-4xl md:text-6xl">{item.title}</h2>
+                          <h2 className="mt-3 sm:mt-4 max-w-2xl text-3xl sm:text-4xl md:text-6xl">{item.title}</h2>
                           {item.text ? (
-                            <p className="mt-6 max-w-xl text-lg leading-relaxed opacity-75">
+                            <p className="mt-4 sm:mt-6 max-w-xl text-base sm:text-lg leading-relaxed opacity-75">
                               {item.text}
                             </p>
                           ) : null}

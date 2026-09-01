@@ -78,15 +78,15 @@ export function ContactView({ defaultSubject }: { defaultSubject?: ContactSubjec
               )}>
                 Moyens de contact
               </p>
-              <div className="mt-4 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+              <div className="mt-4 flex flex-col gap-6 md:flex-row md:items-end md:justify-between md:gap-8">
                 <div className="max-w-xl">
-                  <span className="grid size-14 place-items-center rounded-full bg-current/10">
-                    <HugeiconsIcon icon={channel.icon} strokeWidth={1.75} className="size-7" />
+                  <span className="grid size-12 sm:size-14 place-items-center rounded-full bg-current/10">
+                    <HugeiconsIcon icon={channel.icon} strokeWidth={1.75} className="size-6 sm:size-7" />
                   </span>
-                  <h2 className="mt-6 text-4xl md:text-6xl">
+                  <h2 className="mt-4 sm:mt-6 text-3xl sm:text-4xl md:text-6xl">
                     {channel.title}
                   </h2>
-                  <p className="mt-6 text-lg leading-relaxed opacity-75">
+                  <p className="mt-4 sm:mt-6 text-base sm:text-lg leading-relaxed opacity-75">
                     {channel.text}
                   </p>
                   {channel.cta ? (
@@ -101,7 +101,7 @@ export function ContactView({ defaultSubject }: { defaultSubject?: ContactSubjec
                     </CtaRow>
                   ) : null}
                 </div>
-                <p className="text-lg font-medium tracking-tight md:text-right md:text-2xl">
+                <p className="break-all text-base sm:text-lg font-medium tracking-tight sm:break-normal md:text-right md:text-2xl">
                   {channel.detail}
                 </p>
               </div>
@@ -111,7 +111,7 @@ export function ContactView({ defaultSubject }: { defaultSubject?: ContactSubjec
       ))}
 
       <StackPanel id="message" theme="muted" pin={false} className="scroll-mt-[var(--header-height)]">
-        <div className="mx-auto max-w-6xl px-5 py-16 sm:px-8 md:px-12 md:py-24">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 md:px-12 md:py-24">
           <div className="grid items-start gap-10 lg:grid-cols-12 lg:gap-14">
             <div className="lg:col-span-8">
               <InquiryForm defaultSubject={defaultSubject} />

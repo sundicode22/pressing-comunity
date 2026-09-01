@@ -140,6 +140,8 @@
     scroll-snap-type: none;
     scroll-padding: 0;
     overflow-y: scroll;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
   @media (min-width: 1024px) {
     html {
@@ -147,7 +149,9 @@
     }
   }
   body {
-    @apply bg-background text-foreground text-lg leading-relaxed;
+    @apply bg-background text-foreground text-base sm:text-lg leading-relaxed;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
   h1,
   h2,

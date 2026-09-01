@@ -1,4 +1,4 @@
-import type { Metadata } from "next"
+import type { Metadata, Viewport } from "next"
 import { Englebert, Inter } from "next/font/google"
 
 import { SiteFooter } from "@/components/layout/site-footer"
@@ -19,6 +19,13 @@ const englebert = Englebert({
   variable: "--font-englebert",
 })
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#007c8c",
+}
+
 export const metadata: Metadata = {
   title: {
     default: "The Pressing Community — Communauté camerounaise d'entraide, de formation et d'opportunités",
@@ -31,7 +38,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="fr" className={cn("antialiased", inter.variable, englebert.variable, "font-sans")}>
-      <body className="min-h-svh bg-background text-lg leading-relaxed text-foreground">
+      <body className="min-h-svh bg-background text-base sm:text-lg leading-relaxed text-foreground">
         <SiteHeader />
         <main>{children}</main>
         <SiteFooter />

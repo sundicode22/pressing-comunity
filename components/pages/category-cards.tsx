@@ -49,11 +49,11 @@ export function CategoryCards({
               {badgeLabel(item.title)}
             </p>
             <div className="relative z-10 mt-auto">
-              <h3 className="max-w-[18ch] text-[15px] font-bold leading-snug text-white">
+              <h3 className="max-w-none text-[15px] sm:text-base font-bold leading-snug text-white sm:max-w-[22ch]">
                 {item.title}
               </h3>
               {item.text ? (
-                <p className="mt-1.5 line-clamp-2 text-xs font-semibold leading-relaxed text-white/75">
+                <p className="mt-1.5 line-clamp-2 text-xs sm:text-[13px] font-semibold leading-relaxed text-white/75">
                   {item.text}
                 </p>
               ) : null}

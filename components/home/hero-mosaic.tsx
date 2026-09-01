@@ -76,8 +76,8 @@ export function HeroMosaic() {
 
 function MobileMosaic() {
   return (
-    <div className="flex w-full flex-col gap-3 px-4 pt-5 sm:px-6 sm:pt-6 lg:hidden">
-      <div className="grid h-[21.5rem] grid-cols-[1.2fr_0.8fr] gap-2.5 sm:h-[26rem]">
+    <div className="flex w-full flex-col gap-3 px-3.5 pt-4 sm:px-6 sm:pt-6 lg:hidden">
+      <div className="grid h-[20.5rem] grid-cols-[1.15fr_0.85fr] gap-2.5 sm:h-[26rem]">
         <PhotoCard
           href="/nos-actions/solidarite"
           image="solidarity"
@@ -96,18 +96,18 @@ function MobileMosaic() {
             tab="tl"
             className="min-h-0 flex-1"
           />
-          <DonateCard compact className="min-h-[6.5rem] flex-[0.72]" />
+          <DonateCard compact className="min-h-[6rem] flex-[0.72]" />
         </div>
       </div>
 
-      <div className="scrollbar-none -mx-4 flex gap-2.5 overflow-x-auto overscroll-x-contain px-4 pb-1 sm:-mx-6 sm:px-6">
+      <div className="scrollbar-none -mx-3.5 flex gap-2.5 overflow-x-auto overscroll-x-contain px-3.5 pb-1 sm:-mx-6 sm:px-6">
         <PhotoCard
           href="/nos-actions/talents"
           image="youth"
           kicker="Talents"
           title="Donner une chance"
           tab="tr"
-          className="h-40 w-[11.75rem] shrink-0 sm:h-44 sm:w-52"
+          className="h-38 w-[11rem] shrink-0 sm:h-44 sm:w-52"
         />
         <PhotoCard
           href="/nos-actions/jeunesse"
@@ -115,15 +115,15 @@ function MobileMosaic() {
           kicker="Jeunesse"
           title="Construire son autonomie"
           tab="tl"
-          className="h-40 w-[11.75rem] shrink-0 sm:h-44 sm:w-52"
+          className="h-38 w-[11rem] shrink-0 sm:h-44 sm:w-52"
         />
-        <ExploreCard className="h-40 w-[11.75rem] shrink-0 sm:h-44 sm:w-52" />
+        <ExploreCard className="h-38 w-[11rem] shrink-0 sm:h-44 sm:w-52" />
         <AccentCard
           href="/nous-soutenir"
           icon={HouseHeartIcon}
           title="Votre relais d'entraide"
           accent
-          className="h-40 w-[11.75rem] shrink-0 flex-col items-start justify-between py-4 sm:h-44 sm:w-52"
+          className="h-38 w-[11rem] shrink-0 flex-col items-start justify-between py-4 sm:h-44 sm:w-52"
         />
       </div>
     </div>
@@ -132,9 +132,9 @@ function MobileMosaic() {
 
 function cardShape(tab: "tr" | "tl" | "none" = "tr") {
   return cn(
-    "overflow-hidden rounded-[1.7rem]",
-    tab === "tr" && "rounded-tr-[4.25rem]",
-    tab === "tl" && "rounded-tl-[4.25rem]"
+    "overflow-hidden rounded-[1.35rem] sm:rounded-[1.7rem]",
+    tab === "tr" && "rounded-tr-[2.75rem] sm:rounded-tr-[3.75rem] lg:rounded-tr-[4.25rem]",
+    tab === "tl" && "rounded-tl-[2.75rem] sm:rounded-tl-[3.75rem] lg:rounded-tl-[4.25rem]"
   )
 }
 

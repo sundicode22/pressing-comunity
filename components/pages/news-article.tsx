@@ -18,10 +18,10 @@ export function NewsArticleView({ article }: { article: NewsArticle }) {
             <p className="text-xs font-semibold uppercase tracking-[0.24em] text-orange">
               {article.category} · {formatNewsDate(article.date)}
             </p>
-            <h1 className="mt-5 max-w-4xl text-4xl leading-[1.05] text-balance md:text-6xl">
+            <h1 className="mt-4 sm:mt-5 max-w-4xl text-3xl leading-[1.08] text-balance sm:text-5xl md:text-6xl">
               {article.title}
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
+            <p className="mt-4 sm:mt-6 max-w-2xl text-base sm:text-lg leading-relaxed text-white/75">
               {article.excerpt}
             </p>
           </FadeIn>
@@ -29,9 +29,9 @@ export function NewsArticleView({ article }: { article: NewsArticle }) {
       </StackPanel>
 
       <StackPanel theme="white" pin={false}>
-        <PanelContent className="justify-start py-20">
+        <PanelContent className="justify-start py-12 sm:py-20">
           <FadeIn>
-            <div className="max-w-2xl space-y-6 text-lg leading-relaxed text-muted-foreground">
+            <div className="max-w-2xl space-y-4 sm:space-y-6 text-base sm:text-lg leading-relaxed text-muted-foreground">
               {article.body.map((paragraph) => (
                 <p key={paragraph.slice(0, 40)}>{paragraph}</p>
               ))}
@@ -48,7 +48,7 @@ export function NewsArticleView({ article }: { article: NewsArticle }) {
       <StackPanel theme="black">
         <PanelContent className="items-center text-center">
           <FadeIn>
-            <h2 className="mx-auto max-w-3xl text-3xl md:text-5xl">
+            <h2 className="mx-auto max-w-3xl text-2xl sm:text-3xl md:text-5xl">
               Vous voulez participer aux prochaines actions ?
             </h2>
             <CtaRow>
