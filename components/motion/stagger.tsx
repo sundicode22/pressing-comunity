@@ -1,9 +1,11 @@
 "use client"
 
-import { motion, useReducedMotion } from "framer-motion"
+import { motion } from "framer-motion"
 import type { ReactNode } from "react"
 
 import { cn } from "@/lib/utils"
+
+import { useCanMotion } from "./use-can-motion"
 
 type StaggerProps = {
   children: ReactNode
@@ -12,18 +14,22 @@ type StaggerProps = {
 }
 
 export function Stagger({ children, className, delay = 0 }: StaggerProps) {
-  const reduce = useReducedMotion()
+  const canMotion = useCanMotion()
+
+  if (!canMotion) {
+    return <div className={cn(className)}>{children}</div>
+  }
 
   return (
     <motion.div
       className={cn(className)}
-      initial={reduce ? false : "hidden"}
-      whileInView={reduce ? undefined : "show"}
-      viewport={{ once: true, amount: 0.3 }}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
       variants={{
         hidden: {},
         show: {
-          transition: { staggerChildren: 0.1, delayChildren: delay },
+          transition: { staggerChildren: 0.08, delayChildren: delay },
         },
       }}
     >
@@ -39,23 +45,23 @@ export function StaggerItem({
   children: ReactNode
   className?: string
 }) {
-  const reduce = useReducedMotion()
+  const canMotion = useCanMotion()
+
+  if (!canMotion) {
+    return <div className={cn(className)}>{children}</div>
+  }
 
   return (
     <motion.div
       className={cn(className)}
-      variants={
-        reduce
-          ? undefined
-          : {
-              hidden: { opacity: 0, y: 20 },
-              show: {
-                opacity: 1,
-                y: 0,
-                transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] },
-              },
-            }
-      }
+      variants={{
+        hidden: { opacity: 0, y: 16 },
+        show: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+        },
+      }}
     >
       {children}
     </motion.div>

@@ -30,10 +30,7 @@ export function SiteFooter() {
   const year = new Date().getFullYear()
 
   return (
-    <footer
-      className="relative z-40 flex h-svh min-h-svh w-full flex-col bg-ink text-white"
-      style={{ scrollSnapAlign: "start none" }}
-    >
+    <footer className="relative z-40 flex h-svh min-h-svh w-full flex-col bg-ink text-white lg:snap-start">
       <div className="mx-auto grid w-full max-w-6xl flex-1 grid-cols-1 content-start gap-12 px-6 pt-[calc(var(--header-height)+2.5rem)] md:grid-cols-4 md:gap-10 md:px-12">
         <div>
           <BrandMark inverted />

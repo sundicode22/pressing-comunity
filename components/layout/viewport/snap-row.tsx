@@ -51,6 +51,7 @@ export function SnapRow({ className, children }: SnapRowProps) {
     el.addEventListener("scroll", onScroll, { passive: true })
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const desktop = window.matchMedia("(min-width: 1024px) and (hover: hover)")
 
     const onWheel = (event: WheelEvent) => {
       if (reduced.matches) return
@@ -76,7 +77,9 @@ export function SnapRow({ className, children }: SnapRowProps) {
       }, 650)
     }
 
-    el.addEventListener("wheel", onWheel, { passive: false })
+    if (desktop.matches) {
+      el.addEventListener("wheel", onWheel, { passive: false })
+    }
 
     return () => {
       el.removeEventListener("scroll", onScroll)
@@ -101,7 +104,7 @@ export function SnapRow({ className, children }: SnapRowProps) {
         ref={scrollerRef}
         tabIndex={0}
         onKeyDown={onKeyDown}
-        className="scrollbar-none flex h-full w-full overflow-x-auto overflow-y-hidden overscroll-x-contain snap-x snap-mandatory snap-always outline-none"
+        className="scrollbar-none flex h-full w-full overflow-x-auto overflow-y-hidden overscroll-x-contain snap-x snap-proximity outline-none lg:snap-mandatory lg:snap-always"
       >
         {children}
       </div>

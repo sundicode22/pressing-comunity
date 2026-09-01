@@ -22,7 +22,7 @@ export function ViewportSection({
       id={id}
       className={cn(
         "relative h-svh min-h-svh w-full overflow-hidden",
-        snap && "snap-start snap-always",
+        snap && "lg:snap-start lg:snap-always",
         themeClass(theme),
         className
       )}

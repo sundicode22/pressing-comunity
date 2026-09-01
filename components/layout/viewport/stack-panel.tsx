@@ -25,7 +25,7 @@ export function StackPanel({
       data-stack-panel
       data-theme={theme}
       className={cn(
-        "relative w-full snap-start snap-always",
+        "relative w-full lg:snap-start lg:snap-always",
         pin
           ? "h-svh min-h-svh max-h-svh overflow-hidden"
           : "min-h-svh overflow-visible",
@@ -33,7 +33,6 @@ export function StackPanel({
         themeClass(theme),
         className
       )}
-      style={{ scrollSnapAlign: "start none" }}
     >
       {children}
     </section>

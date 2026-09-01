@@ -68,10 +68,10 @@ export function SiteHeader() {
           className={cn(
             "grid h-11 grid-cols-[1fr_auto_1fr] items-center rounded-full border px-2.5 transition-colors duration-300 md:h-12 md:px-3",
             solid
-              ? "border-ink/10 bg-white/95 text-ink shadow-sm backdrop-blur-md"
+              ? "border-ink/10 bg-white text-ink shadow-sm lg:bg-white/95 lg:backdrop-blur-md"
               : onDark
-                ? "border-white/15 bg-ink/55 text-white shadow-sm backdrop-blur-md"
-                : "border-ink/8 bg-white/80 text-ink shadow-sm backdrop-blur-md"
+                ? "border-white/15 bg-ink text-white shadow-sm lg:bg-ink/55 lg:backdrop-blur-md"
+                : "border-ink/8 bg-white text-ink shadow-sm lg:bg-white/80 lg:backdrop-blur-md"
           )}
         >
           <BrandMark inverted={onDark} className="min-w-0" />

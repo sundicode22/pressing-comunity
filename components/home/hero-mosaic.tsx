@@ -69,30 +69,45 @@ export function HeroMosaic() {
         </Stagger>
       </div>
 
-      <div className="grid h-[min(36rem,58svh)] min-h-[28rem] w-full shrink-0 grid-cols-2 grid-rows-[1fr_1fr_auto] gap-2.5 px-4 sm:px-6 lg:hidden">
+      <MobileMosaic />
+    </>
+  )
+}
+
+function MobileMosaic() {
+  return (
+    <div className="flex w-full flex-col gap-3 px-4 pt-5 sm:px-6 sm:pt-6 lg:hidden">
+      <div className="grid h-[21.5rem] grid-cols-[1.2fr_0.8fr] gap-2.5 sm:h-[26rem]">
         <PhotoCard
           href="/nos-actions/solidarite"
           image="solidarity"
           kicker="Solidarité"
           title="Aider à Douala"
           tab="tr"
-          className="min-h-0"
+          className="h-full"
+          priority
         />
-        <PhotoCard
-          href="/nos-actions/formation"
-          image="workshop"
-          kicker="Formation"
-          title="Se former ensemble"
-          tab="tl"
-          className="min-h-0"
-        />
+        <div className="flex min-h-0 flex-col gap-2.5">
+          <PhotoCard
+            href="/nos-actions/formation"
+            image="workshop"
+            kicker="Formation"
+            title="Se former"
+            tab="tl"
+            className="min-h-0 flex-1"
+          />
+          <DonateCard compact className="min-h-[6.5rem] flex-[0.72]" />
+        </div>
+      </div>
+
+      <div className="scrollbar-none -mx-4 flex gap-2.5 overflow-x-auto overscroll-x-contain px-4 pb-1 sm:-mx-6 sm:px-6">
         <PhotoCard
           href="/nos-actions/talents"
           image="youth"
           kicker="Talents"
           title="Donner une chance"
           tab="tr"
-          className="min-h-0"
+          className="h-40 w-[11.75rem] shrink-0 sm:h-44 sm:w-52"
         />
         <PhotoCard
           href="/nos-actions/jeunesse"
@@ -100,12 +115,18 @@ export function HeroMosaic() {
           kicker="Jeunesse"
           title="Construire son autonomie"
           tab="tl"
-          className="min-h-0"
+          className="h-40 w-[11.75rem] shrink-0 sm:h-44 sm:w-52"
         />
-        <DonateCard className="min-h-[5.5rem]" />
-        <JoinCard className="min-h-[5.5rem]" />
+        <ExploreCard className="h-40 w-[11.75rem] shrink-0 sm:h-44 sm:w-52" />
+        <AccentCard
+          href="/nous-soutenir"
+          icon={HouseHeartIcon}
+          title="Votre relais d'entraide"
+          accent
+          className="h-40 w-[11.75rem] shrink-0 flex-col items-start justify-between py-4 sm:h-44 sm:w-52"
+        />
       </div>
-    </>
+    </div>
   )
 }
 
@@ -117,25 +138,50 @@ function cardShape(tab: "tr" | "tl" | "none" = "tr") {
   )
 }
 
-function DonateCard({ className }: { className?: string }) {
+function DonateCard({
+  className,
+  compact = false,
+}: {
+  className?: string
+  compact?: boolean
+}) {
   return (
     <Link
       href="/nous-soutenir/faire-un-don"
       className={cn(
-        "group flex flex-col justify-between bg-teal-deep p-4 text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/50 sm:p-5",
+        "group flex flex-col justify-between bg-teal-deep p-3.5 text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal/50 sm:p-5",
         cardShape("tr"),
         className
       )}
     >
       <div>
-        <p className="font-heading text-3xl leading-none sm:text-4xl">Aider.</p>
-        <p className="mt-2 max-w-[18ch] text-sm leading-relaxed text-white/70 sm:text-base">
-          Orphelinats, veuves, familles : une aide concrète, ici et maintenant.
+        <p
+          className={cn(
+            "font-heading leading-none",
+            compact ? "text-2xl" : "text-3xl sm:text-4xl"
+          )}
+        >
+          Aider.
         </p>
+        {compact ? null : (
+          <p className="mt-2 max-w-[18ch] text-sm leading-relaxed text-white/70 sm:text-base">
+            Orphelinats, veuves, familles : une aide concrète, ici et maintenant.
+          </p>
+        )}
       </div>
-      <span className="mt-4 flex items-center justify-between gap-3 text-sm font-semibold">
+      <span
+        className={cn(
+          "flex items-center justify-between gap-3 font-semibold",
+          compact ? "mt-3 text-xs" : "mt-4 text-sm"
+        )}
+      >
         Faire un don
-        <ArrowDisc className="bg-orange text-ink group-hover:bg-orange/90" />
+        <ArrowDisc
+          className={cn(
+            "bg-orange text-ink group-hover:bg-orange/90",
+            compact && "size-7"
+          )}
+        />
       </span>
     </Link>
   )
@@ -191,18 +237,21 @@ function AccentCard({
   icon,
   title,
   accent = false,
+  className,
 }: {
   href: string
   icon: typeof SmileIcon
   title: string
   accent?: boolean
+  className?: string
 }) {
   return (
     <Link
       href={href}
       className={cn(
         "group flex h-[4.6rem] shrink-0 items-center gap-3 rounded-[1.5rem] bg-ink px-4 text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/30",
-        accent && "text-orange"
+        accent && "text-orange",
+        className
       )}
     >
       <HugeiconsIcon icon={icon} strokeWidth={1.75} className="size-7 shrink-0" />
@@ -247,7 +296,7 @@ function PhotoCard({
       <p className="relative z-10 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/90">
         {kicker}
       </p>
-      <p className="relative z-10 max-w-[16ch] font-heading text-lg leading-snug drop-shadow-sm sm:text-xl">
+      <p className="relative z-10 max-w-[16ch] font-heading text-base leading-snug drop-shadow-sm sm:text-lg lg:text-xl">
         {title}
       </p>
     </Link>

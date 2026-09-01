@@ -11,7 +11,7 @@ export function StackTrack({ snap = "none", className, children }: StackTrackPro
     <div
       className={cn(
         "relative",
-        snap === "y" && "snap-y snap-mandatory",
+        snap === "y" && "lg:snap-y lg:snap-mandatory",
         className
       )}
     >

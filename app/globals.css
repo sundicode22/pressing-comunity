@@ -137,9 +137,14 @@
   }
   html {
     @apply font-sans;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: none;
     scroll-padding: 0;
     overflow-y: scroll;
+  }
+  @media (min-width: 1024px) {
+    html {
+      scroll-snap-type: y mandatory;
+    }
   }
   body {
     @apply bg-background text-foreground text-lg leading-relaxed;
@@ -154,6 +159,7 @@
   }
   @media (prefers-reduced-motion: reduce) {
     html {
+      scroll-snap-type: none;
       scroll-behavior: auto;
     }
   }

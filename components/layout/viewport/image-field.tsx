@@ -45,6 +45,7 @@ export function ImageField({
         sizes={sizes}
         priority={priority}
         unoptimized
+        decoding="async"
         className="object-cover object-[center_20%]"
       />
       {overlay ? (
