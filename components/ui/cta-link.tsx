@@ -8,7 +8,7 @@ import { buttonVariants } from "@/components/ui/button"
 type CtaLinkProps = {
   href: string
   children: React.ReactNode
-  variant?: "default" | "outline" | "ghost" | "secondary"
+  variant?: "default" | "outline" | "ghost" | "secondary" | "accent"
   className?: string
   icon?: boolean
 }
@@ -24,16 +24,17 @@ export function CtaLink({
     <Link
       href={href}
       className={cn(
-        buttonVariants({ variant }),
-        "h-11 rounded-full px-5 text-sm font-medium sm:h-12 sm:px-6",
-        variant === "default" && "bg-black text-white hover:bg-black/80",
+        buttonVariants({ variant: variant === "accent" ? "default" : variant }),
+        "h-11 rounded-full px-5 text-base font-semibold sm:h-12 sm:px-6 gap-2",
+        variant === "default" && "bg-primary text-primary-foreground hover:bg-teal-deep",
+        variant === "accent" && "bg-orange text-ink hover:bg-orange/90",
         variant === "outline" && "border-current bg-transparent",
         className
       )}
     >
       {children}
       {icon ? (
-        <HugeiconsIcon icon={ArrowUpRight01Icon} strokeWidth={2} className="size-4" />
+        <HugeiconsIcon icon={ArrowUpRight01Icon} strokeWidth={2} className="size-[1.1em]" />
       ) : null}
     </Link>
   )

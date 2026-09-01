@@ -1,31 +1,55 @@
+import Image from "next/image"
+
+import { getMedia, type MediaKey } from "@/lib/media"
 import { cn } from "@/lib/utils"
 
-const patterns = [
-  "radial-gradient(circle at 28% 22%, #4a4a4a 0%, transparent 46%), radial-gradient(circle at 78% 72%, #2a2a2a 0%, transparent 42%), linear-gradient(160deg, #111 0%, #2b2b2b 100%)",
-  "radial-gradient(circle at 70% 18%, #555 0%, transparent 40%), radial-gradient(circle at 20% 80%, #1c1c1c 0%, transparent 45%), linear-gradient(200deg, #0d0d0d 0%, #3a3a3a 100%)",
-  "radial-gradient(circle at 50% 40%, #666 0%, transparent 38%), linear-gradient(180deg, #1a1a1a 0%, #000 100%)",
-  "linear-gradient(135deg, #000 0%, #444 48%, #111 100%)",
-  "radial-gradient(circle at 12% 30%, #3d3d3d 0%, transparent 36%), linear-gradient(90deg, #0a0a0a 0%, #2f2f2f 100%)",
-]
-
 type ImageFieldProps = {
+  name?: MediaKey
   seed?: number
+  src?: string
+  alt?: string
   className?: string
   label?: string
+  overlay?: boolean
+  priority?: boolean
+  sizes?: string
 }
 
-export function ImageField({ seed = 0, className, label }: ImageFieldProps) {
-  const pattern = patterns[seed % patterns.length]
+export function ImageField({
+  name,
+  seed = 0,
+  src,
+  alt,
+  className,
+  label,
+  overlay = true,
+  priority = false,
+  sizes = "100vw",
+}: ImageFieldProps) {
+  const asset = src
+    ? { src, alt: alt ?? label ?? "" }
+    : getMedia(name, seed)
+  const imageAlt = alt ?? label ?? asset.alt
 
   return (
     <div
       aria-hidden={label ? undefined : true}
       role={label ? "img" : undefined}
       aria-label={label}
-      className={cn("absolute inset-0 grayscale", className)}
-      style={{ backgroundImage: pattern }}
+      className={cn("absolute inset-0 overflow-hidden bg-ink", className)}
     >
-      <div className="absolute inset-0 bg-black/20" />
+      <Image
+        src={asset.src}
+        alt={imageAlt}
+        fill
+        sizes={sizes}
+        priority={priority}
+        unoptimized
+        className="object-cover object-[center_20%]"
+      />
+      {overlay ? (
+        <div className="absolute inset-0 bg-linear-to-t from-ink/80 via-ink/25 to-ink/40" />
+      ) : null}
     </div>
   )
 }

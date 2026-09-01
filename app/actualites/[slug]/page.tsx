@@ -1,7 +1,24 @@
-import { PagePlaceholder } from "@/components/pages/page-placeholder"
+import { notFound } from "next/navigation"
 
-export const metadata = {
-  title: "Article",
+import { NewsArticleView } from "@/components/pages/news-article"
+import { getNewsArticle, newsArticles } from "@/lib/news"
+
+export function generateStaticParams() {
+  return newsArticles.map((article) => ({ slug: article.slug }))
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>
+}) {
+  const { slug } = await params
+  const article = getNewsArticle(slug)
+  if (!article) return { title: "Article" }
+  return {
+    title: article.title,
+    description: article.excerpt,
+  }
 }
 
 export default async function ArticlePage({
@@ -10,31 +27,8 @@ export default async function ArticlePage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
+  const article = getNewsArticle(slug)
+  if (!article) notFound()
 
-  return (
-    <PagePlaceholder
-      title="Article"
-      subtitle={slug.replace(/-/g, " ")}
-      sections={[
-        {
-          layout: "image",
-          title: "Image principale",
-          body: "Les photos d'actions seront ajoutées ici.",
-          imageSeed: 4,
-        },
-        {
-          title: "Corps de l'article",
-          body: "Le contenu de l'article sera publié depuis l'administration. Cette page est un gabarit.",
-        },
-        {
-          title: "Vous voulez participer aux prochaines actions ?",
-          theme: "black",
-          ctas: [
-            { label: "Devenir membre", href: "/devenir-membre" },
-            { label: "Faire un don", href: "/nous-soutenir/faire-un-don", variant: "outline" },
-          ],
-        },
-      ]}
-    />
-  )
+  return <NewsArticleView article={article} />
 }

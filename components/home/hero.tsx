@@ -8,37 +8,38 @@ import { site } from "@/lib/navigation"
 
 export function HomeHero() {
   return (
-    <StackPanel theme="white" flush className="bg-[#f6f6f4]">
+    <StackPanel
+      theme="white"
+      flush
+      pin={false}
+      className="flex min-h-[120svh] flex-col bg-paper"
+    >
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_22%,rgba(0,0,0,0.06),transparent_52%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_28%,rgba(0,124,140,0.10),transparent_52%)]"
       />
 
-      <div className="relative z-10 flex h-full min-h-0 w-full min-w-0 flex-col">
-        <div className="flex w-full shrink-0 flex-col items-center px-5 pt-[calc(var(--header-height)+0.75rem)] text-center sm:px-8 md:px-12 lg:pt-[calc(var(--header-height)+1rem)]">
-          <FadeIn className="w-full min-w-0 max-w-3xl">
-            <p className="text-[11px] uppercase tracking-[0.28em] text-neutral-400">
+      <div className="relative z-10 flex min-h-[120svh] w-full min-w-0 flex-1 flex-col pt-[var(--header-height)] pb-8 md:pb-12">
+        <div className="flex min-h-0 w-full flex-1 flex-col items-center justify-center px-5 py-6 text-center sm:px-8 md:px-12 md:py-8">
+          <FadeIn className="w-full min-w-0 max-w-5xl">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-teal">
               {site.city}
             </p>
-            <h1 className="mx-auto mt-3 max-w-3xl text-[1.55rem] leading-[1.12] font-medium tracking-tight text-balance text-neutral-950 sm:text-3xl md:text-4xl lg:text-[2.75rem]">
+            <h1 className="mx-auto mt-4 max-w-3xl text-[1.65rem] leading-[1.12] text-balance text-ink sm:text-4xl md:text-[2.75rem] lg:text-5xl">
               {site.signature}
             </h1>
-            <p className="mx-auto mt-3 max-w-xl text-sm leading-relaxed text-pretty text-neutral-500 md:mt-3.5">
-              The Pressing Community est une communauté camerounaise qui
-              transforme la solidarité en formation, en accompagnement et en
-              opportunités concrètes. Nous aidons aujourd&apos;hui, et nous
-              construisons ce qui aidera demain.
+            <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-pretty text-muted-foreground md:text-lg">
+              Une communauté camerounaise, née à Douala, qui transforme la
+              solidarité en formation, en accompagnement et en opportunités
+              concrètes.
             </p>
-            <CtaRow className="mt-4 flex-col sm:flex-row">
-              <CtaLink href="/devenir-membre" className="max-sm:w-full max-sm:max-w-xs">
-                Rejoindre la communauté
-              </CtaLink>
+            <CtaRow className="mt-8">
               <CtaLink
-                href="/nos-actions"
-                variant="secondary"
-                className="bg-neutral-200 text-neutral-950 hover:bg-neutral-300 max-sm:w-full max-sm:max-w-xs"
+                href="/devenir-membre"
+                icon
+                className="h-14 gap-3 px-8 text-lg sm:h-16 sm:px-10 sm:text-xl max-sm:w-full max-sm:max-w-sm [&_svg]:size-5 sm:[&_svg]:size-6"
               >
-                Découvrir nos actions
+                Rejoindre la communauté
               </CtaLink>
             </CtaRow>
           </FadeIn>

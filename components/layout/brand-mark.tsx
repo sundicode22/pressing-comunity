@@ -13,23 +13,19 @@ export function BrandMark({ className, inverted = false }: BrandMarkProps) {
     <Link
       href="/"
       className={cn(
-        "flex items-center gap-2.5 font-medium tracking-tight",
-        inverted ? "text-white" : "text-current",
+        "flex items-center gap-2.5 font-heading tracking-tight",
+        inverted ? "text-white" : "text-ink",
         className
       )}
     >
       <span
         aria-hidden
-        className={cn(
-          "grid size-7 place-items-center rounded-md border",
-          inverted ? "border-white/40" : "border-current/40"
-        )}
+        className="relative grid size-7 place-items-center rounded-lg bg-teal text-xs font-semibold text-white md:size-8 md:text-sm"
       >
-        <svg viewBox="0 0 24 24" className="size-4" fill="none" stroke="currentColor" strokeWidth="1.75">
-          <path d="M12 3 4.5 6.5v5.2c0 5 3.3 8.2 7.5 9.3 4.2-1.1 7.5-4.3 7.5-9.3V6.5L12 3Z" />
-        </svg>
+        P
+        <span className="absolute -top-0.5 -right-0.5 size-1.5 rounded-full bg-orange md:size-2" />
       </span>
-      <span className="text-sm md:text-base">{site.shortName}</span>
+      <span className="truncate text-[15px] md:text-base">{site.shortName}</span>
       <span className="sr-only">{site.name}</span>
     </Link>
   )

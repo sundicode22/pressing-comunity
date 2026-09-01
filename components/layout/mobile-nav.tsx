@@ -31,7 +31,7 @@ export function MobileNav() {
           <Button
             variant="ghost"
             size="icon"
-            className="size-10 rounded-full"
+            className="size-8 rounded-full"
             aria-label="Ouvrir le menu"
           />
         }
@@ -40,9 +40,9 @@ export function MobileNav() {
       </SheetTrigger>
       <SheetContent
         side="right"
-        className="h-full w-full max-w-none border-0 bg-white p-0 text-black sm:max-w-none"
+        className="h-full w-full max-w-none border-0 bg-white p-0 text-ink sm:max-w-none"
       >
-        <SheetHeader className="border-b border-black/10 px-6 py-5">
+        <SheetHeader className="border-b border-ink/10 px-6 py-5">
           <SheetTitle className="sr-only">Navigation</SheetTitle>
           <BrandMark />
         </SheetHeader>
@@ -61,12 +61,15 @@ export function MobileNav() {
                       <Link
                         href={item.href}
                         className={cn(
-                          "text-2xl font-medium tracking-tight",
-                          active && "underline underline-offset-8"
+                          "inline-flex items-center gap-2.5 font-heading text-2xl tracking-tight",
+                          active && "text-teal"
                         )}
                       />
                     }
                   >
+                    {active ? (
+                      <span className="size-1.5 rounded-full bg-orange" aria-hidden />
+                    ) : null}
                     {item.label}
                   </SheetClose>
                   {item.children ? (
@@ -77,7 +80,7 @@ export function MobileNav() {
                             render={
                               <Link
                                 href={child.href}
-                                className="text-sm text-neutral-600"
+                                className="font-heading text-sm text-muted-foreground"
                               />
                             }
                           >
@@ -92,7 +95,7 @@ export function MobileNav() {
             })}
           </ul>
         </nav>
-        <div className="sticky bottom-0 grid gap-2 border-t border-black/10 bg-white p-6">
+        <div className="sticky bottom-0 grid gap-2 border-t border-ink/10 bg-white p-6">
           <SheetClose
             render={
               <Link
@@ -108,8 +111,8 @@ export function MobileNav() {
               <Link
                 href={donateCta.href}
                 className={cn(
-                  buttonVariants({ variant: "outline" }),
-                  "h-11 rounded-full border-black text-sm"
+                  buttonVariants(),
+                  "h-11 rounded-full bg-orange text-ink hover:bg-orange/90 text-sm"
                 )}
               />
             }

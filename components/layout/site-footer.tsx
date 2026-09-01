@@ -31,24 +31,28 @@ export function SiteFooter() {
 
   return (
     <footer
-      className="relative z-40 flex h-svh min-h-svh w-full flex-col bg-black text-white"
+      className="relative z-40 flex h-svh min-h-svh w-full flex-col bg-ink text-white"
       style={{ scrollSnapAlign: "start none" }}
     >
       <div className="mx-auto grid w-full max-w-6xl flex-1 grid-cols-1 content-start gap-12 px-6 pt-[calc(var(--header-height)+2.5rem)] md:grid-cols-4 md:gap-10 md:px-12">
         <div>
           <BrandMark inverted />
-          <p className="mt-5 text-sm font-medium">{site.name}</p>
-          <p className="mt-3 text-sm leading-relaxed text-white/70">{site.baseline}</p>
-          <p className="mt-6 text-sm text-white/70">{site.city}</p>
-          <p className="mt-1 text-sm text-white/50">{site.registration}</p>
+          <p className="mt-5 text-base font-medium">{site.name}</p>
+          <p className="mt-3 text-base leading-relaxed text-white/70">{site.baseline}</p>
+          <p className="mt-3 text-base leading-relaxed text-white/55">
+            Solidarité, formation, accompagnement et talents — une communauté
+            camerounaise qui aide aujourd&apos;hui et construit demain.
+          </p>
+          <p className="mt-6 text-base text-white/70">{site.city}</p>
+          <p className="mt-1 text-base text-white/50">{site.registration}</p>
         </div>
 
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-white/50">Naviguer</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange">Naviguer</p>
           <ul className="mt-5 space-y-3.5">
             {footerNavigate.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-sm hover:underline">
+                <Link href={item.href} className="text-base hover:underline">
                   {item.label}
                 </Link>
               </li>
@@ -57,11 +61,11 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-white/50">Agir</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange">Agir</p>
           <ul className="mt-5 space-y-3.5">
             {footerAct.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="text-sm hover:underline">
+                <Link href={item.href} className="text-base hover:underline">
                   {item.label}
                 </Link>
               </li>
@@ -70,8 +74,8 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <p className="text-xs uppercase tracking-[0.2em] text-white/50">Nous joindre</p>
-          <ul className="mt-5 space-y-3.5 text-sm text-white/80">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-orange">Nous joindre</p>
+          <ul className="mt-5 space-y-3.5 text-base text-white/80">
             <li>WhatsApp : {site.whatsapp}</li>
             <li>E-mail : {site.email}</li>
             <li>Adresse du siège : {site.address}</li>
@@ -84,7 +88,7 @@ export function SiteFooter() {
                   key={item.label}
                   href={item.href}
                   aria-label={item.label}
-                  className="grid size-9 place-items-center rounded-full hover:bg-white/10"
+                  className="grid size-9 place-items-center rounded-full hover:bg-teal/40"
                 >
                   <HugeiconsIcon icon={icon} strokeWidth={2} className="size-4" />
                 </Link>

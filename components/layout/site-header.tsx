@@ -4,7 +4,8 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-import { donateCta, headerNav } from "@/lib/navigation"
+import { donateCta, headerNav, type NavItem } from "@/lib/navigation"
+import type { MediaKey } from "@/lib/media"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import {
@@ -16,14 +17,33 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
+import { ImageField } from "@/components/layout/viewport"
 
 import { BrandMark } from "./brand-mark"
 import { MobileNav } from "./mobile-nav"
+
+const featuredImage: Record<string, MediaKey> = {
+  "/qui-sommes-nous": "community",
+  "/nos-actions": "volunteers",
+  "/nous-soutenir": "hands",
+}
 
 function isActivePath(pathname: string, href: string) {
   const path = href.split("#")[0]
   if (path === "/") return pathname === "/"
   return pathname === path || pathname.startsWith(`${path}/`)
+}
+
+function navItemClass(onDark: boolean, active: boolean) {
+  return cn(
+    "h-8 rounded-full bg-transparent px-3 py-0 text-[13px] font-medium tracking-tight hover:bg-ink/6 data-popup-open:bg-ink/8 data-open:bg-ink/8",
+    onDark &&
+      "hover:bg-white/12 data-popup-open:bg-white/12 data-open:bg-white/12",
+    active &&
+      (onDark
+        ? "bg-white text-ink hover:bg-white data-popup-open:bg-white data-open:bg-white"
+        : "bg-teal text-white hover:bg-teal data-popup-open:bg-teal data-open:bg-teal")
+  )
 }
 
 export function SiteHeader() {
@@ -42,95 +62,121 @@ export function SiteHeader() {
   const onDark = !solid && !lightHero
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 h-[var(--header-height)] transition-colors duration-300",
-        solid
-          ? "bg-white/95 text-black shadow-sm backdrop-blur-md"
-          : onDark
-            ? "bg-transparent text-white"
-            : "bg-transparent text-black"
-      )}
-    >
-      <div className="mx-auto grid h-full max-w-[1400px] grid-cols-[1fr_auto_1fr] items-center px-4 md:px-8">
-        <BrandMark inverted={onDark} />
+    <header className="fixed inset-x-0 top-0 z-50 font-heading">
+      <div className="mx-auto max-w-[1400px] px-3 pt-2 md:px-4">
+        <div
+          className={cn(
+            "grid h-11 grid-cols-[1fr_auto_1fr] items-center rounded-full border px-2.5 transition-colors duration-300 md:h-12 md:px-3",
+            solid
+              ? "border-ink/10 bg-white/95 text-ink shadow-sm backdrop-blur-md"
+              : onDark
+                ? "border-white/15 bg-ink/55 text-white shadow-sm backdrop-blur-md"
+                : "border-ink/8 bg-white/80 text-ink shadow-sm backdrop-blur-md"
+          )}
+        >
+          <BrandMark inverted={onDark} className="min-w-0" />
 
-        <NavigationMenu className="hidden lg:flex" align="center">
-          <NavigationMenuList className="gap-0.5">
-            {headerNav.map((item) => {
-              const active = isActivePath(pathname, item.href)
+          <NavigationMenu className="hidden lg:flex" align="center">
+            <NavigationMenuList className="gap-0.5">
+              {headerNav.map((item) => {
+                const active = isActivePath(pathname, item.href)
 
-              if (!item.children) {
+                if (!item.children) {
+                  return (
+                    <NavigationMenuItem key={item.href}>
+                      <NavigationMenuLink
+                        href={item.href}
+                        render={<Link href={item.href} />}
+                        className={cn(
+                          navigationMenuTriggerStyle(),
+                          navItemClass(onDark, active)
+                        )}
+                      >
+                        {item.label}
+                      </NavigationMenuLink>
+                    </NavigationMenuItem>
+                  )
+                }
+
                 return (
                   <NavigationMenuItem key={item.href}>
-                    <NavigationMenuLink
-                      href={item.href}
-                      render={<Link href={item.href} />}
-                      className={cn(
-                        navigationMenuTriggerStyle(),
-                        "bg-transparent text-[13px] hover:bg-black/5",
-                        onDark && "hover:bg-white/10",
-                        active && "underline decoration-1 underline-offset-8"
-                      )}
+                    <NavigationMenuTrigger
+                      className={navItemClass(onDark, active)}
                     >
-                      {item.label}
-                    </NavigationMenuLink>
+                      <Link href={item.href} className="contents">
+                        {item.label}
+                      </Link>
+                    </NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <MegaMenu item={item} />
+                    </NavigationMenuContent>
                   </NavigationMenuItem>
                 )
-              }
+              })}
+            </NavigationMenuList>
+          </NavigationMenu>
 
-              return (
-                <NavigationMenuItem key={item.href}>
-                  <NavigationMenuTrigger
-                    className={cn(
-                      "bg-transparent text-[13px] hover:bg-black/5",
-                      onDark && "hover:bg-white/10",
-                      active && "underline decoration-1 underline-offset-8"
-                    )}
-                  >
-                    <Link href={item.href} className="contents">
-                      {item.label}
-                    </Link>
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <ul className="grid min-w-64 gap-0.5 p-1">
-                      {item.children.map((child) => (
-                        <li key={child.href}>
-                          <NavigationMenuLink
-                            href={child.href}
-                            render={<Link href={child.href} />}
-                            className="text-sm"
-                          >
-                            {child.label}
-                          </NavigationMenuLink>
-                        </li>
-                      ))}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              )
-            })}
-          </NavigationMenuList>
-        </NavigationMenu>
-
-        <div className="flex items-center justify-end gap-2">
-          <Link
-            href={donateCta.href}
-            className={cn(
-              buttonVariants(),
-              "hidden h-10 rounded-full px-4 text-xs md:inline-flex",
-              onDark
-                ? "bg-white text-black hover:bg-white/90"
-                : "bg-black text-white hover:bg-black/80"
-            )}
-          >
-            {donateCta.label}
-          </Link>
-          <div className={cn(onDark ? "text-white" : "text-black")}>
-            <MobileNav />
+          <div className="flex items-center justify-end gap-1.5">
+            <Link
+              href={donateCta.href}
+              className={cn(
+                buttonVariants(),
+                "hidden h-8 rounded-full px-4 text-xs font-sans font-semibold md:inline-flex",
+                "bg-orange text-ink hover:bg-orange/90"
+              )}
+            >
+              {donateCta.label}
+            </Link>
+            <div className={cn("lg:hidden", onDark ? "text-white" : "text-ink")}>
+              <MobileNav />
+            </div>
           </div>
         </div>
       </div>
     </header>
+  )
+}
+
+function MegaMenu({ item }: { item: NavItem }) {
+  const image = featuredImage[item.href]
+
+  return (
+    <div className="grid w-[min(44rem,calc(100vw-2rem))] gap-3 p-3 md:grid-cols-[minmax(13rem,0.85fr)_1.15fr] md:p-4">
+      <Link
+        href={item.href}
+        className="relative flex min-h-44 flex-col justify-end overflow-hidden rounded-2xl p-5 text-white"
+      >
+        {image ? (
+          <ImageField name={image} label={item.label} sizes="280px" />
+        ) : (
+          <span className="absolute inset-0 bg-teal" />
+        )}
+        <span className="relative z-10 font-heading text-2xl leading-tight">{item.label}</span>
+        {item.description ? (
+          <span className="relative z-10 mt-2 line-clamp-3 text-sm leading-relaxed text-white/80">
+            {item.description}
+          </span>
+        ) : null}
+      </Link>
+
+      <ul className="grid content-start gap-1">
+        {item.children?.map((child) => (
+          <li key={child.href}>
+            <NavigationMenuLink
+              href={child.href}
+              render={<Link href={child.href} />}
+              className="flex flex-col items-start gap-0.5 rounded-xl p-3"
+            >
+              <span className="font-heading text-base">{child.label}</span>
+              {child.description ? (
+                <span className="line-clamp-2 font-sans text-sm leading-snug text-muted-foreground">
+                  {child.description}
+                </span>
+              ) : null}
+            </NavigationMenuLink>
+          </li>
+        ))}
+      </ul>
+    </div>
   )
 }

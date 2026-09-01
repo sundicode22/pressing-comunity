@@ -7,6 +7,7 @@ import {
   StackPanel,
 } from "@/components/layout/viewport"
 import { FadeIn } from "@/components/motion/fade-in"
+import { CategoryCards } from "@/components/pages/category-cards"
 import { CtaLink, CtaRow } from "@/components/ui/cta-link"
 import { site } from "@/lib/navigation"
 
@@ -14,24 +15,25 @@ export function HomeStacks() {
   return (
     <>
       <StackPanel theme="black">
-        <ImageField seed={1} label="Actions de la communauté" />
+        <ImageField name="charity" label="Actions de la communauté" priority />
       </StackPanel>
 
       <StackPanel theme="white">
         <PanelContent>
           <FadeIn>
-            <p className="text-xs uppercase tracking-[0.24em] text-neutral-500">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-teal">
               Notre principe
             </p>
-            <h2 className="mt-4 max-w-3xl text-3xl font-medium tracking-tight md:text-5xl">
+            <h2 className="mt-4 max-w-3xl text-3xl md:text-5xl">
               Nous progressons ensemble
             </h2>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-600">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Nous ne voulons pas nous limiter à la solidarité ponctuelle. Nous
               voulons transformer progressivement cette solidarité en formation,
-              en accompagnement, en connexion et en opportunités concrètes. Notre
-              principe est simple : lorsque nous progressons ensemble, notre
-              impact devient plus grand.
+              en accompagnement, en connexion et en opportunités concrètes. Aider
+              aujourd&apos;hui reste nécessaire. Former et ouvrir des portes, c&apos;est
+              ce qui change une trajectoire. Notre principe est simple : lorsque
+              nous progressons ensemble, notre impact devient plus grand.
             </p>
             <CtaRow className="justify-start">
               <CtaLink href="/qui-sommes-nous" variant="outline" icon>
@@ -43,75 +45,62 @@ export function HomeStacks() {
       </StackPanel>
 
       <StackPanel theme="black">
-        <ImageField seed={2} label={site.baseline} />
+        <ImageField name="crowd" label={site.baseline} />
         <PanelContent className="justify-end">
           <FadeIn>
-            <p className="max-w-xl text-2xl font-medium tracking-tight text-white md:text-4xl">
+            <h2 className="max-w-3xl text-4xl leading-[1.05] text-white md:text-6xl lg:text-7xl">
               {site.baseline}
+            </h2>
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75 md:text-lg">
+              Nous commençons ensemble à Douala. La solidarité ouvre le chemin.
+              La formation et l&apos;accompagnement le prolongent.
             </p>
+            <CtaRow className="justify-start">
+              <CtaLink href="/devenir-membre" variant="accent">
+                Rejoindre la communauté
+              </CtaLink>
+            </CtaRow>
           </FadeIn>
         </PanelContent>
       </StackPanel>
 
-      <StackPanel theme="muted">
-        <PanelContent>
+      <StackPanel theme="muted" pin={false}>
+        <div className="mx-auto w-full max-w-6xl px-6 pt-[calc(var(--header-height)+1.25rem)] pb-20 md:px-12">
           <FadeIn>
-            <p className="text-xs uppercase tracking-[0.24em] text-neutral-500">
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-teal">
               Ce que nous faisons
             </p>
-            <h2 className="mt-4 max-w-3xl text-3xl font-medium tracking-tight md:text-5xl">
+            <h2 className="mt-4 max-w-3xl text-3xl md:text-5xl">
               Cinq axes, une seule direction
             </h2>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-neutral-600">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
               Donner à chacun les moyens de construire une meilleure situation.
+              La solidarité ouvre le chemin. La formation et l&apos;accompagnement
+              le prolongent. Les talents et la jeunesse en sont l&apos;horizon.
+              Ces cinq catégories ne sont pas des tiroirs séparés : une action
+              peut en ouvrir une autre.
             </p>
           </FadeIn>
-        </PanelContent>
-      </StackPanel>
-
-      <StackPanel theme="white">
-        <SnapRow>
-          {actionAxes.map((axe, index) => (
-            <SnapSlide key={axe.title} theme={index % 2 === 0 ? "white" : "muted"}>
-              <ImageField seed={index + 1} className="opacity-40" />
-              <PanelContent>
-                <FadeIn>
-                  <p className="text-xs uppercase tracking-[0.24em] opacity-50">
-                    Axe 0{index + 1}
-                  </p>
-                  <h2 className="mt-4 max-w-2xl text-4xl font-medium tracking-tight md:text-6xl">
-                    {axe.title}
-                  </h2>
-                  <p className="mt-6 max-w-xl text-base leading-relaxed opacity-75">
-                    {axe.text}
-                  </p>
-                  {axe.href ? (
-                    <CtaRow className="justify-start">
-                      <CtaLink href={axe.href} variant="outline" icon>
-                        En savoir plus
-                      </CtaLink>
-                    </CtaRow>
-                  ) : null}
-                </FadeIn>
-              </PanelContent>
-            </SnapSlide>
-          ))}
-        </SnapRow>
+          <CategoryCards items={actionAxes} />
+        </div>
       </StackPanel>
 
       <StackPanel theme="black">
         <SnapRow>
           {virtuousCircle.map((step, index) => (
-            <SnapSlide key={step.title} theme={index % 2 === 0 ? "black" : "muted"}>
+            <SnapSlide key={step.title} theme="black">
+              {step.image ? (
+                <ImageField name={step.image} label={step.title} />
+              ) : null}
               <PanelContent>
                 <FadeIn>
-                  <p className="text-xs uppercase tracking-[0.24em] opacity-50">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-orange">
                     Comment nous créons de l&apos;impact · 0{index + 1}
                   </p>
-                  <h2 className="mt-4 max-w-2xl text-4xl font-medium tracking-tight md:text-6xl">
+                  <h2 className="mt-4 max-w-2xl text-4xl md:text-6xl">
                     {step.title}
                   </h2>
-                  <p className="mt-6 max-w-xl text-base leading-relaxed opacity-75">
+                  <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
                     {step.text}
                   </p>
                 </FadeIn>
@@ -122,24 +111,24 @@ export function HomeStacks() {
       </StackPanel>
 
       <StackPanel theme="black">
+        <ImageField name="hands" overlay={false} className="opacity-30" />
         <PanelContent>
           <FadeIn>
-            <h2 className="max-w-3xl text-3xl font-medium tracking-tight md:text-5xl">
+            <h2 className="max-w-3xl text-3xl md:text-5xl">
               Être membre, c&apos;est participer et contribuer
             </h2>
-            <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/75">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/75">
               Un membre de The Pressing Community participe aux activités, accède
               aux formations et à l&apos;accompagnement, propose des initiatives et
               développe ses projets. Mais l&apos;adhésion n&apos;est pas seulement un
               droit : c&apos;est aussi une responsabilité. Chaque membre est
               encouragé à contribuer, selon ses possibilités, au développement de
-              la communauté.
+              la communauté — une compétence, un relais, une présence, un don.
+              Il n&apos;y a pas une seule manière d&apos;être utile. Il y a celle que
+              l&apos;on tient.
             </p>
             <CtaRow className="justify-start">
-              <CtaLink
-                href="/devenir-membre"
-                className="bg-white text-black hover:bg-white/90"
-              >
+              <CtaLink href="/devenir-membre" variant="accent">
                 Devenir membre
               </CtaLink>
             </CtaRow>
@@ -149,22 +138,23 @@ export function HomeStacks() {
 
       <StackPanel theme="white">
         <SnapRow>
-          {homeSupportCards.map((card, index) => (
-            <SnapSlide key={card.title} theme={index % 2 === 0 ? "white" : "muted"}>
+          {homeSupportCards.map((card) => (
+            <SnapSlide key={card.title} theme="black">
+              {card.image ? <ImageField name={card.image} label={card.title} /> : null}
               <PanelContent>
                 <FadeIn>
-                  <p className="text-xs uppercase tracking-[0.24em] opacity-50">
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-orange">
                     Nous soutenir
                   </p>
-                  <h2 className="mt-4 max-w-2xl text-4xl font-medium tracking-tight md:text-6xl">
+                  <h2 className="mt-4 max-w-2xl text-4xl md:text-6xl">
                     {card.title}
                   </h2>
-                  <p className="mt-6 max-w-xl text-base leading-relaxed opacity-75">
+                  <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
                     {card.text}
                   </p>
                   {card.href ? (
                     <CtaRow className="justify-start">
-                      <CtaLink href={card.href} icon>
+                      <CtaLink href={card.href} variant="accent" icon>
                         Continuer
                       </CtaLink>
                     </CtaRow>
@@ -176,27 +166,25 @@ export function HomeStacks() {
         </SnapRow>
       </StackPanel>
 
-      <StackPanel theme="black">
+      <StackPanel theme="teal">
         <PanelContent className="items-center text-center">
           <FadeIn>
-            <h2 className="mx-auto max-w-3xl text-3xl font-medium tracking-tight md:text-5xl">
+            <h2 className="mx-auto max-w-3xl text-3xl md:text-5xl">
               Comment pouvons-nous réussir ensemble ?
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/75">
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-white/80">
               Une personne peut changer sa vie grâce à une opportunité. Une
-              communauté peut en créer des milliers.
+              communauté peut en créer des milliers. Rejoignez-nous à Douala —
+              ou soutenez ce que nous construisons, où que vous soyez.
             </p>
             <CtaRow>
-              <CtaLink
-                href="/devenir-membre"
-                className="bg-white text-black hover:bg-white/90"
-              >
+              <CtaLink href="/devenir-membre" variant="accent">
                 Rejoindre la communauté
               </CtaLink>
               <CtaLink
                 href="/nous-soutenir/faire-un-don"
                 variant="outline"
-                className="border-white/40 text-white hover:bg-white/10"
+                className="border-white/50 text-white hover:bg-white/10"
               >
                 Faire un don
               </CtaLink>
