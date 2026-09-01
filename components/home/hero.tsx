@@ -25,7 +25,7 @@ export function HomeHero() {
             <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-teal">
               {site.city}
             </p>
-            <h1 className="mx-auto mt-4 max-w-3xl text-[1.65rem] leading-[1.12] text-balance text-ink sm:text-4xl md:text-[2.75rem] lg:text-5xl">
+            <h1 className="mx-auto mt-4 max-w-4xl text-[1.9rem] leading-[1.1] text-balance text-ink sm:text-[2.5rem] md:text-[3.25rem] lg:text-6xl">
               {site.signature}
             </h1>
             <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-pretty text-muted-foreground md:text-lg">
