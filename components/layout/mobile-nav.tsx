@@ -31,7 +31,7 @@ export function MobileNav() {
           <Button
             variant="ghost"
             size="icon"
-            className="size-9 rounded-full"
+            className="size-11 rounded-full lg:size-9"
             aria-label="Ouvrir le menu"
           />
         }

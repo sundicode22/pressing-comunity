@@ -66,7 +66,7 @@ export function SiteHeader() {
       <div className="mx-auto max-w-[1400px] px-3 pt-2 md:px-4">
         <div
           className={cn(
-            "grid h-11 grid-cols-[1fr_auto_1fr] items-center rounded-full border px-2.5 transition-colors duration-300 md:h-12 md:px-3",
+            "flex h-14 items-center justify-between rounded-full border px-1.5 transition-colors duration-300 md:h-12 md:px-3 lg:grid lg:grid-cols-[1fr_auto_1fr]",
             solid
               ? "border-ink/10 bg-white text-ink shadow-sm lg:bg-white/95 lg:backdrop-blur-md"
               : onDark
@@ -116,7 +116,7 @@ export function SiteHeader() {
             </NavigationMenuList>
           </NavigationMenu>
 
-          <div className="flex items-center justify-end gap-1.5">
+          <div className="ml-auto flex items-center justify-end gap-1.5 lg:ml-0">
             <Link
               href={donateCta.href}
               className={cn(

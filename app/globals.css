@@ -10,7 +10,7 @@
   --font-sans: var(--font-sans);
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --font-heading: var(--font-englebert), "Englebert", cursive;
-  --header-height: 4rem;
+  --header-height: 4.5rem;
   --color-ink: var(--ink);
   --color-teal: var(--teal);
   --color-teal-deep: var(--teal-deep);

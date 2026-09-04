@@ -29,7 +29,7 @@ export function Stagger({ children, className, delay = 0 }: StaggerProps) {
       variants={{
         hidden: {},
         show: {
-          transition: { staggerChildren: 0.08, delayChildren: delay },
+          transition: { staggerChildren: 0.12, delayChildren: delay },
         },
       }}
     >
@@ -55,11 +55,12 @@ export function StaggerItem({
     <motion.div
       className={cn(className)}
       variants={{
-        hidden: { opacity: 0, y: 16 },
+        hidden: { opacity: 0, y: 18, filter: "blur(8px)" },
         show: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] },
+          filter: "blur(0px)",
+          transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
         },
       }}
     >
