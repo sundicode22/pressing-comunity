@@ -14,7 +14,7 @@ type BrandMarkProps = {
 }
 
 const sizeClass: Record<BrandMarkSize, string> = {
-  nav: "h-11 w-11 md:h-9 md:w-9",
+  nav: "h-14 w-14 md:h-9 md:w-9",
   hero: "h-20 w-20 sm:h-20 sm:w-20 lg:h-24 lg:w-24",
   footer: "h-auto w-[min(100%,18rem)] sm:w-80 md:w-[22rem]",
 }

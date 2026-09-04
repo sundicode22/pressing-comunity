@@ -66,7 +66,7 @@ export function SiteHeader() {
       <div className="mx-auto max-w-[1400px] px-3 pt-2 md:px-4">
         <div
           className={cn(
-            "flex h-14 items-center justify-between rounded-full border px-1.5 transition-colors duration-300 md:h-12 md:px-3 lg:grid lg:grid-cols-[1fr_auto_1fr]",
+            "flex h-16 items-center justify-between rounded-full border px-1.5 transition-colors duration-300 md:h-12 md:px-3 lg:grid lg:grid-cols-[1fr_auto_1fr]",
             solid
               ? "border-ink/10 bg-white text-ink shadow-sm lg:bg-white/95 lg:backdrop-blur-md"
               : onDark
