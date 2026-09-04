@@ -1,6 +1,7 @@
 "use client"
 
 import { HeroMosaic } from "@/components/home/hero-mosaic"
+import { BrandMark } from "@/components/layout/brand-mark"
 import { StackPanel } from "@/components/layout/viewport"
 import { FadeIn } from "@/components/motion/fade-in"
 import { CtaLink, CtaRow } from "@/components/ui/cta-link"
@@ -22,9 +23,7 @@ export function HomeHero() {
       <div className="relative z-10 flex min-h-svh w-full min-w-0 flex-1 flex-col pt-[var(--header-height)] pb-6 lg:min-h-[120svh] lg:pb-12">
         <div className="flex w-full flex-col px-4 pt-3 text-left sm:px-6 lg:min-h-0 lg:flex-1 lg:items-center lg:justify-center lg:px-12 lg:py-8 lg:text-center">
           <FadeIn className="w-full min-w-0 max-w-5xl">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-teal">
-              {site.city}
-            </p>
+            <BrandMark size="hero" className="lg:mx-auto" />
             <h1 className="mt-3 max-w-[16ch] text-[1.7rem] leading-[1.12] text-balance text-ink sm:mt-4 sm:max-w-xl sm:text-[2.35rem] lg:mx-auto lg:max-w-4xl lg:text-[3.25rem] xl:text-6xl">
               {site.signature}
             </h1>

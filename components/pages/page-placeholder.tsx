@@ -12,6 +12,7 @@ import { FadeIn } from "@/components/motion/fade-in"
 import { CtaLink, CtaRow } from "@/components/ui/cta-link"
 import type { MediaKey } from "@/lib/media"
 import { cn } from "@/lib/utils"
+import { BrandMark } from "@/components/layout/brand-mark"
 
 import { CategoryCards } from "./category-cards"
 
@@ -153,9 +154,7 @@ export function PagePlaceholder({
         {cover ? <ImageField name={cover} label={title} priority /> : null}
         <PanelContent className={cover ? "items-center justify-end text-center" : "items-center text-center"}>
           <FadeIn>
-            <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-orange">
-              The Pressing Community
-            </p>
+            <BrandMark inverted size="hero" className="mx-auto" />
             <h1 className="mx-auto mt-4 sm:mt-5 max-w-4xl text-3xl leading-[1.08] text-balance sm:text-5xl md:text-6xl">
               {title}
             </h1>

@@ -25,10 +25,10 @@ export function StackPanel({
       data-stack-panel
       data-theme={theme}
       className={cn(
-        "relative w-full min-h-svh lg:snap-start lg:snap-always",
+        "relative w-full min-h-svh snap-start",
         pin
-          ? "overflow-hidden lg:h-svh lg:max-h-svh"
-          : "min-h-svh overflow-visible",
+          ? "h-svh max-h-svh overflow-hidden snap-always"
+          : "overflow-visible",
         !flush && "rounded-t-[2rem] shadow-[0_-18px_50px_rgba(0,0,0,0.18)]",
         themeClass(theme),
         className

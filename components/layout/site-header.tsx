@@ -74,7 +74,7 @@ export function SiteHeader() {
                 : "border-ink/8 bg-white text-ink shadow-sm lg:bg-white/80 lg:backdrop-blur-md"
           )}
         >
-          <BrandMark inverted={onDark} className="min-w-0" />
+          <BrandMark inverted={onDark} />
 
           <NavigationMenu className="hidden lg:flex" align="center">
             <NavigationMenuList className="gap-0.5">

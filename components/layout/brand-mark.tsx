@@ -1,32 +1,50 @@
+import Image from "next/image"
 import Link from "next/link"
 
 import { cn } from "@/lib/utils"
 import { site } from "@/lib/navigation"
 
+type BrandMarkSize = "nav" | "hero" | "footer"
+
 type BrandMarkProps = {
   className?: string
   inverted?: boolean
+  large?: boolean
+  size?: BrandMarkSize
 }
 
-export function BrandMark({ className, inverted = false }: BrandMarkProps) {
+const sizeClass: Record<BrandMarkSize, string> = {
+  nav: "h-8 w-8 md:h-9 md:w-9",
+  hero: "h-[4.5rem] w-[4.5rem] sm:h-20 sm:w-20 lg:h-24 lg:w-24",
+  footer: "h-auto w-[min(100%,18rem)] sm:w-80 md:w-[22rem]",
+}
+
+export function BrandMark({
+  className,
+  inverted = false,
+  large = false,
+  size,
+}: BrandMarkProps) {
+  const resolved: BrandMarkSize = size ?? (large ? "footer" : "nav")
+
   return (
     <Link
       href="/"
-      className={cn(
-        "flex items-center gap-2.5 font-heading tracking-tight",
-        inverted ? "text-white" : "text-ink",
-        className
-      )}
+      aria-label={site.name}
+      className={cn("inline-flex shrink-0 items-center", className)}
     >
-      <span
-        aria-hidden
-        className="relative grid size-7 place-items-center rounded-lg bg-teal text-xs font-semibold text-white md:size-8 md:text-sm"
-      >
-        P
-        <span className="absolute -top-0.5 -right-0.5 size-1.5 rounded-full bg-orange md:size-2" />
-      </span>
-      <span className="truncate text-[15px] md:text-base">{site.shortName}</span>
-      <span className="sr-only">{site.name}</span>
+      <Image
+        src="/logo.png"
+        alt={site.name}
+        width={5551}
+        height={5597}
+        priority={resolved !== "footer"}
+        className={cn(
+          "object-contain",
+          sizeClass[resolved],
+          inverted && "drop-shadow-[0_2px_10px_rgba(0,0,0,0.35)]"
+        )}
+      />
     </Link>
   )
 }

@@ -6,15 +6,9 @@ type StackTrackProps = {
   children: React.ReactNode
 }
 
-export function StackTrack({ snap = "none", className, children }: StackTrackProps) {
+export function StackTrack({ className, children }: StackTrackProps) {
   return (
-    <div
-      className={cn(
-        "relative",
-        snap === "y" && "lg:snap-y lg:snap-mandatory",
-        className
-      )}
-    >
+    <div id="stack-track" className={cn("relative w-full", className)}>
       {children}
     </div>
   )

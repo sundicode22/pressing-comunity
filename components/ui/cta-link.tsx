@@ -25,7 +25,7 @@ export function CtaLink({
       href={href}
       className={cn(
         buttonVariants({ variant: variant === "accent" ? "default" : variant }),
-        "h-11 rounded-full px-5 text-base font-semibold sm:h-12 sm:px-6 gap-2",
+        "h-12 rounded-full px-6 text-base font-normal sm:h-13 sm:px-7 gap-2",
         variant === "default" && "bg-primary text-primary-foreground hover:bg-teal-deep",
         variant === "accent" && "bg-orange text-ink hover:bg-orange/90",
         variant === "outline" && "border-current bg-transparent",
