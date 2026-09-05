@@ -142,3 +142,66 @@ export function confirmationEmail(payload: InquiryPayload) {
     }),
   }
 }
+
+function simpleFields(rows: { label: string; value: string }[]) {
+  const html = rows
+    .filter((row) => row.value)
+    .map(
+      (row) => `
+        <tr>
+          <td style="padding:12px 0;border-bottom:1px solid #e4e9e7;width:38%;vertical-align:top;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:${MUTED};font-weight:700;">${escapeHtml(row.label)}</td>
+          <td style="padding:12px 0;border-bottom:1px solid #e4e9e7;font-size:16px;line-height:1.5;color:${INK};">${escapeHtml(row.value)}</td>
+        </tr>`
+    )
+    .join("")
+  return `<div style="padding:0 36px 8px 36px;"><table role="presentation" width="100%" cellpadding="0" cellspacing="0">${html}</table></div>`
+}
+
+export function bravoCandidateEmail(options: { prenom: string; numero: string; body: string }) {
+  return {
+    subject: `BRAVO 2026 — candidature ${options.numero}`,
+    html: layout({
+      preheader: `Votre candidature est enregistrée sous le numéro ${options.numero}.`,
+      kicker: "BRAVO 2026",
+      title: `C’est enregistré, ${options.prenom}.`,
+      intro: `Votre numéro : ${options.numero}. Notez-le, il sera prononcé en direct.`,
+      body: `<div style="padding:0 36px 16px 36px;"><p style="margin:0;font-size:16px;line-height:1.7;color:${INK};">${nl2br(options.body)}</p></div>`,
+      footerNote: "The Pressing Community ne demande jamais d’argent. Si quelqu’un vous en réclame en notre nom, c’est une escroquerie.",
+    }),
+  }
+}
+
+export function bravoInboxEmail(options: {
+  numero: string
+  updated: boolean
+  name: string
+  email: string
+  whatsapp: string
+  sousSysteme: string
+  etabRegion: string
+  inscriptionPayee: string
+  premierFamille: string
+  flags: string[]
+}) {
+  const action = options.updated ? "mise à jour" : "nouvelle candidature"
+  return {
+    subject: `[BRAVO 2026] ${options.numero} — ${action} — ${options.name}`,
+    html: layout({
+      preheader: `${options.name} : ${action} ${options.numero}.`,
+      kicker: "BRAVO 2026",
+      title: options.updated ? "Candidature mise à jour" : "Nouvelle candidature",
+      intro: `${options.name} a déposé un dossier. Numéro ${options.numero}.`,
+      body: simpleFields([
+        { label: "Numéro", value: options.numero },
+        { label: "WhatsApp", value: options.whatsapp },
+        { label: "E-mail", value: options.email },
+        { label: "Sous-système", value: options.sousSysteme },
+        { label: "Région établissement", value: options.etabRegion },
+        { label: "Inscription payée", value: options.inscriptionPayee },
+        { label: "Premier de la famille", value: options.premierFamille },
+        { label: "Alertes", value: options.flags.join(" · ") || "aucune" },
+      ]),
+      footerNote: "Dossier enregistré dans la feuille BRAVO 2026. Ne transférez pas cet e-mail hors de l’équipe.",
+    }),
+  }
+}

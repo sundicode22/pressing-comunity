@@ -12,12 +12,14 @@ export function Field({
   id,
   label,
   hint,
+  error,
   children,
   className,
 }: {
   id: string
   label: string
   hint?: string
+  error?: string
   children: ReactNode
   className?: string
 }) {
@@ -28,6 +30,11 @@ export function Field({
       </label>
       {children}
       {hint ? <p className="text-sm leading-relaxed text-ink/50">{hint}</p> : null}
+      {error ? (
+        <p className="text-sm leading-relaxed text-red-700" role="alert">
+          {error}
+        </p>
+      ) : null}
     </div>
   )
 }

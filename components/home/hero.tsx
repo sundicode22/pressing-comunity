@@ -4,7 +4,7 @@ import { HeroMosaic } from "@/components/home/hero-mosaic"
 import { BrandMark } from "@/components/layout/brand-mark"
 import { StackPanel } from "@/components/layout/viewport"
 import { Stagger, StaggerItem } from "@/components/motion/stagger"
-import { CtaLink, CtaRow } from "@/components/ui/cta-link"
+import { BravoHomeCtas } from "@/components/bravo/bravo-home-ctas"
 import { site } from "@/lib/navigation"
 
 export function HomeHero() {
@@ -27,7 +27,7 @@ export function HomeHero() {
               <BrandMark size="hero" className="lg:mx-auto" />
             </StaggerItem>
             <StaggerItem>
-              <h1 className="mt-3 max-w-[16ch] text-[1.7rem] leading-[1.12] text-balance text-ink sm:mt-4 sm:max-w-xl sm:text-[2.35rem] lg:mx-auto lg:max-w-4xl lg:text-[3.25rem] xl:text-6xl">
+              <h1 className="mt-4 max-w-[16ch] text-[1.7rem] leading-[1.12] text-balance text-ink sm:mt-5 sm:max-w-xl sm:text-[2.35rem] lg:mx-auto lg:max-w-4xl lg:text-[3.25rem] xl:text-6xl">
                 {site.signature}
               </h1>
             </StaggerItem>
@@ -39,15 +39,7 @@ export function HomeHero() {
               </p>
             </StaggerItem>
             <StaggerItem>
-              <CtaRow className="mt-5 justify-start lg:mt-8 lg:justify-center">
-                <CtaLink
-                  href="/devenir-membre"
-                  icon
-                  className="h-12 w-full max-w-none gap-2.5 px-6 text-base sm:h-14 sm:w-auto sm:px-8 sm:text-lg lg:h-16 lg:px-10 lg:text-xl lg:gap-3 [&_svg]:size-4 sm:[&_svg]:size-5 lg:[&_svg]:size-6"
-                >
-                  Rejoindre la communauté
-                </CtaLink>
-              </CtaRow>
+              <BravoHomeCtas />
             </StaggerItem>
           </Stagger>
         </div>

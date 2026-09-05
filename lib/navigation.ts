@@ -76,9 +76,15 @@ export const memberCta: NavLink = {
   href: "/devenir-membre",
 }
 
+export const bravoCta: NavLink = {
+  label: "BRAVO 2026",
+  href: "/bravo-2026",
+}
+
 export const footerNavigate: NavLink[] = [
   { label: "Qui sommes-nous", href: "/qui-sommes-nous" },
   { label: "Nos actions", href: "/nos-actions" },
+  { label: "BRAVO 2026", href: "/bravo-2026" },
   { label: "Devenir membre", href: "/devenir-membre" },
   { label: "Actualités", href: "/actualites" },
   { label: "Contact", href: "/contact" },

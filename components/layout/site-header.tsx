@@ -8,6 +8,7 @@ import { donateCta, headerNav, type NavItem } from "@/lib/navigation"
 import type { MediaKey } from "@/lib/media"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
+import { BravoNavLink } from "@/components/bravo/bravo-nav-link"
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -36,7 +37,7 @@ function isActivePath(pathname: string, href: string) {
 
 function navItemClass(onDark: boolean, active: boolean) {
   return cn(
-    "h-8 rounded-full bg-transparent px-3 py-0 text-[13px] font-medium tracking-tight hover:bg-ink/6 data-popup-open:bg-ink/8 data-open:bg-ink/8",
+    "h-10 rounded-full bg-transparent px-3.5 py-0 text-[15px] font-medium tracking-tight hover:bg-ink/6 data-popup-open:bg-ink/8 data-open:bg-ink/8",
     onDark &&
       "hover:bg-white/12 data-popup-open:bg-white/12 data-open:bg-white/12",
     active &&
@@ -66,7 +67,7 @@ export function SiteHeader() {
       <div className="mx-auto max-w-[1400px] px-3 pt-2 md:px-4">
         <div
           className={cn(
-            "flex h-16 items-center justify-between rounded-full border px-1.5 transition-colors duration-300 md:h-12 md:px-3 lg:grid lg:grid-cols-[1fr_auto_1fr]",
+            "flex h-16 items-center justify-between rounded-full border px-1.5 transition-colors duration-300 md:h-16 md:px-3 lg:grid lg:h-[4.25rem] lg:grid-cols-[1fr_auto_1fr]",
             solid
               ? "border-ink/10 bg-white text-ink shadow-sm lg:bg-white/95 lg:backdrop-blur-md"
               : onDark
@@ -117,11 +118,20 @@ export function SiteHeader() {
           </NavigationMenu>
 
           <div className="ml-auto flex items-center justify-end gap-1.5 lg:ml-0">
+            <BravoNavLink
+              className={cn(
+                buttonVariants(),
+                "hidden h-10 rounded-full px-4 text-sm font-sans font-semibold md:inline-flex",
+                solid || lightHero
+                  ? "bg-teal text-white hover:bg-teal-deep"
+                  : "bg-white text-ink hover:bg-white/90"
+              )}
+            />
             <Link
               href={donateCta.href}
               className={cn(
                 buttonVariants(),
-                "hidden h-8 rounded-full px-4 text-xs font-sans font-semibold md:inline-flex",
+                "hidden h-10 rounded-full px-5 text-sm font-sans font-semibold md:inline-flex",
                 "bg-orange text-ink hover:bg-orange/90"
               )}
             >

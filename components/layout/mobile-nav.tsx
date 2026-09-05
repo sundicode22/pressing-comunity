@@ -9,6 +9,7 @@ import { Menu02Icon } from "@hugeicons/core-free-icons"
 import { donateCta, headerNav, memberCta } from "@/lib/navigation"
 import { cn } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
+import { BravoNavLink } from "@/components/bravo/bravo-nav-link"
 import {
   Sheet,
   SheetClose,
@@ -47,6 +48,7 @@ export function MobileNav() {
           <BrandMark />
         </SheetHeader>
         <nav className="flex-1 overflow-y-auto px-5 py-6 sm:px-6">
+          <BravoNavLink className="mb-5 inline-flex h-11 items-center rounded-full bg-teal px-4 text-sm font-semibold text-white" />
           <ul className="space-y-5">
             {headerNav.map((item) => {
               const active =

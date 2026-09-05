@@ -267,6 +267,14 @@ export const jeunesse: PagePlaceholderProps = {
   cover: "youth",
   sections: [
     {
+      title: "BRAVO 2026",
+      body: [
+        "Vingt jeunes qui ont obtenu leur Baccalauréat ou leur GCE Advanced Level en 2026 recevront 50 000 FCFA chacun. Dix francophones, dix anglophones, de toutes les régions. L'inscription est gratuite, sans compte à créer, jusqu'au dimanche 20 septembre à minuit.",
+        "Nous ne demandons jamais d'argent. Si quelqu'un vous en réclame en notre nom, c'est une escroquerie.",
+      ],
+      ctas: [{ label: "Déposer ma candidature", href: "/bravo-2026" }],
+    },
+    {
       layout: "split",
       image: "sports",
       title: "Nos programmes jeunesse",

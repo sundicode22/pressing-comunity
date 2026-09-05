@@ -37,6 +37,9 @@ export function NewsArticleView({ article }: { article: NewsArticle }) {
               ))}
             </div>
             <CtaRow className="justify-start">
+              {article.slug === "bravo-2026" ? (
+                <CtaLink href="/bravo-2026">Déposer ma candidature</CtaLink>
+              ) : null}
               <CtaLink href="/actualites" variant="outline" icon>
                 Toutes les actualités
               </CtaLink>
