@@ -52,14 +52,16 @@ export async function POST(request: Request) {
     const message = error instanceof Error ? error.message : "Enregistrement impossible."
     const misconfigured =
       message.includes("not configured") ||
-      message.includes("GOOGLE_") ||
+      message.includes("BRAVO_APPS_SCRIPT") ||
+      message.includes("Apps Script") ||
+      message.includes("Unauthorized") ||
       message.includes("Missing")
 
     console.error("[bravo]", message)
     return NextResponse.json(
       {
         error: misconfigured
-          ? "L’enregistrement n’est pas encore configuré. Ajoutez GOOGLE_SHEET_ID et le compte de service."
+          ? "L’enregistrement n’est pas encore configuré. Ajoutez BRAVO_APPS_SCRIPT_URL (Apps Script)."
           : "La candidature n’a pas pu être enregistrée. Réessayez dans un instant.",
       },
       { status: misconfigured ? 503 : 500 }

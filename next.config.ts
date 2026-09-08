@@ -1,7 +1,5 @@
 import type { NextConfig } from "next"
 
-const nextConfig: NextConfig = {
-  serverExternalPackages: ["googleapis", "google-auth-library"],
-}
+const nextConfig: NextConfig = {}
 
 export default nextConfig

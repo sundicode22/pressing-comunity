@@ -1,6 +1,3 @@
-import { google } from "googleapis"
-
-import { BRAVO_NUMBER_PREFIX, SHEET_HEADERS, SHEET_TAB } from "./constants"
 import type { BravoApplication } from "./schema"
 import { formatWatTimestamp } from "./window"
 
@@ -10,134 +7,23 @@ export type BravoUpsertResult = {
   verif_parent_momo: boolean
 }
 
-type SheetRow = Record<(typeof SHEET_HEADERS)[number], string>
-
 function yesNo(value: boolean) {
   return value ? "oui" : "non"
 }
 
-function columnLetter(index: number) {
-  let n = index
-  let letters = ""
-  while (n > 0) {
-    const rem = (n - 1) % 26
-    letters = String.fromCharCode(65 + rem) + letters
-    n = Math.floor((n - 1) / 26)
-  }
-  return letters
+function appsScriptUrl() {
+  const url = process.env.BRAVO_APPS_SCRIPT_URL?.trim()
+  if (!url) throw new Error("BRAVO_APPS_SCRIPT_URL is not configured")
+  return url
 }
 
-const LAST_COL = columnLetter(SHEET_HEADERS.length)
-
-function credentials() {
-  const json = process.env.GOOGLE_SERVICE_ACCOUNT_JSON?.trim()
-  if (json) {
-    const parsed = JSON.parse(json) as { client_email?: string; private_key?: string }
-    if (!parsed.client_email || !parsed.private_key) {
-      throw new Error("GOOGLE_SERVICE_ACCOUNT_JSON is missing client_email or private_key")
-    }
-    return { client_email: parsed.client_email, private_key: parsed.private_key }
-  }
-
-  const client_email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim()
-  const private_key = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, "\n").trim()
-  if (!client_email || !private_key) {
-    throw new Error("Google Sheets is not configured")
-  }
-  return { client_email, private_key }
+function appsScriptSecret() {
+  return process.env.BRAVO_APPS_SCRIPT_SECRET?.trim() || ""
 }
 
-function spreadsheetId() {
-  const id = process.env.GOOGLE_SHEET_ID?.trim()
-  if (!id) throw new Error("GOOGLE_SHEET_ID is not configured")
-  return id
-}
-
-function sheetsClient() {
-  const { client_email, private_key } = credentials()
-  const auth = new google.auth.JWT({
-    email: client_email,
-    key: private_key,
-    scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-  })
-  return google.sheets({ version: "v4", auth })
-}
-
-function toRow(record: SheetRow) {
-  return SHEET_HEADERS.map((header) => record[header] ?? "")
-}
-
-function fromRow(values: string[]): SheetRow {
-  const record = {} as SheetRow
-  for (const [index, header] of SHEET_HEADERS.entries()) {
-    record[header] = values[index] ?? ""
-  }
-  return record
-}
-
-function nextNumero(rows: SheetRow[]) {
-  let max = 0
-  for (const row of rows) {
-    const match = row.numero.match(/^BRAVO26-(\d+)$/)
-    if (match) max = Math.max(max, Number.parseInt(match[1], 10))
-  }
-  return `${BRAVO_NUMBER_PREFIX}${String(max + 1).padStart(5, "0")}`
-}
-
-function parentMomoOverLimit(rows: SheetRow[], momo: string, skipWhatsapp: string) {
-  const others = rows.filter(
-    (row) => row.parent_momo === momo && row.candidat_whatsapp !== skipWhatsapp
-  )
-  return others.length >= 2
-}
-
-async function ensureSheet(
-  sheets: ReturnType<typeof sheetsClient>,
-  id: string
-) {
-  const meta = await sheets.spreadsheets.get({ spreadsheetId: id })
-  const exists = meta.data.sheets?.some((sheet) => sheet.properties?.title === SHEET_TAB)
-  if (!exists) {
-    await sheets.spreadsheets.batchUpdate({
-      spreadsheetId: id,
-      requestBody: {
-        requests: [{ addSheet: { properties: { title: SHEET_TAB } } }],
-      },
-    })
-  }
-
-  const header = await sheets.spreadsheets.values.get({
-    spreadsheetId: id,
-    range: `${SHEET_TAB}!A1:${LAST_COL}1`,
-  })
-  const current = header.data.values?.[0] ?? []
-  const matches =
-    current.length === SHEET_HEADERS.length &&
-    SHEET_HEADERS.every((name, index) => current[index] === name)
-
-  if (!matches) {
-    await sheets.spreadsheets.values.update({
-      spreadsheetId: id,
-      range: `${SHEET_TAB}!A1:${LAST_COL}1`,
-      valueInputOption: "RAW",
-      requestBody: { values: [[...SHEET_HEADERS]] },
-    })
-  }
-}
-
-function applicationToRecord(
-  application: BravoApplication,
-  meta: {
-    numero: string
-    submitted_at: string
-    updated_at: string
-    verif_parent_momo: boolean
-  }
-): SheetRow {
+function applicationPayload(application: BravoApplication) {
   return {
-    numero: meta.numero,
-    submitted_at: meta.submitted_at,
-    updated_at: meta.updated_at,
+    submitted_at: formatWatTimestamp(),
     utm_source: application.utm.utm_source,
     utm_medium: application.utm.utm_medium,
     utm_campaign: application.utm.utm_campaign,
@@ -180,55 +66,51 @@ function applicationToRecord(
     base_contact: yesNo(application.base_contact),
     alerte_numeros_identiques: yesNo(application.alerte_numeros_identiques),
     verif_age: yesNo(application.verif_age),
-    verif_parent_momo: yesNo(meta.verif_parent_momo),
   }
 }
 
 export async function upsertBravoApplication(
   application: BravoApplication
 ): Promise<BravoUpsertResult> {
-  const id = spreadsheetId()
-  const sheets = sheetsClient()
-  await ensureSheet(sheets, id)
-
-  const existing = await sheets.spreadsheets.values.get({
-    spreadsheetId: id,
-    range: `${SHEET_TAB}!A2:${LAST_COL}`,
+  const secret = appsScriptSecret()
+  const response = await fetch(appsScriptUrl(), {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      secret: secret || undefined,
+      application: applicationPayload(application),
+    }),
+    // Apps Script web apps often follow a 302 to the script.googleusercontent.com result.
+    redirect: "follow",
+    cache: "no-store",
   })
-  const rows = (existing.data.values ?? []).map((row) => fromRow(row.map((cell) => String(cell ?? ""))))
-  const matchIndex = rows.findIndex(
-    (row) => row.candidat_whatsapp === application.candidat_whatsapp
-  )
-  const now = formatWatTimestamp()
-  const updated = matchIndex >= 0
-  const numero = updated ? rows[matchIndex].numero || nextNumero(rows) : nextNumero(rows)
-  const submitted_at = updated ? rows[matchIndex].submitted_at || now : now
-  const verif_parent_momo = parentMomoOverLimit(rows, application.parent_momo, application.candidat_whatsapp)
-  const record = applicationToRecord(application, {
-    numero,
-    submitted_at,
-    updated_at: now,
-    verif_parent_momo,
-  })
-  const values = [toRow(record)]
 
-  if (updated) {
-    const sheetRow = matchIndex + 2
-    await sheets.spreadsheets.values.update({
-      spreadsheetId: id,
-      range: `${SHEET_TAB}!A${sheetRow}:${LAST_COL}${sheetRow}`,
-      valueInputOption: "RAW",
-      requestBody: { values },
-    })
-  } else {
-    await sheets.spreadsheets.values.append({
-      spreadsheetId: id,
-      range: `${SHEET_TAB}!A:${LAST_COL}`,
-      valueInputOption: "RAW",
-      insertDataOption: "INSERT_ROWS",
-      requestBody: { values },
-    })
+  const text = await response.text()
+  let payload: {
+    ok?: boolean
+    error?: string
+    numero?: string
+    updated?: boolean
+    verif_parent_momo?: boolean
   }
 
-  return { numero, updated, verif_parent_momo }
+  try {
+    payload = JSON.parse(text) as typeof payload
+  } catch {
+    throw new Error(
+      response.ok
+        ? "Apps Script returned a non-JSON response"
+        : `Apps Script request failed (${response.status})`
+    )
+  }
+
+  if (!response.ok || !payload.ok || !payload.numero) {
+    throw new Error(payload.error || `Apps Script request failed (${response.status})`)
+  }
+
+  return {
+    numero: payload.numero,
+    updated: Boolean(payload.updated),
+    verif_parent_momo: Boolean(payload.verif_parent_momo),
+  }
 }
