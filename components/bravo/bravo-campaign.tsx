@@ -56,7 +56,7 @@ export function BravoCampaign({
   return (
     <StackTrack>
       <StackPanel theme="black" flush>
-        <ImageField name="students" label="BRAVO 2026" priority />
+        <ImageField name="youth" label="BRAVO 2026" priority />
         <PanelContent className="items-center justify-end text-center">
           <FadeIn>
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-orange">
@@ -85,12 +85,12 @@ export function BravoCampaign({
         </PanelContent>
       </StackPanel>
 
-      <StackPanel id="candidature" theme="muted" pin={false} className="scroll-mt-[var(--header-height)]">
-        <div className="mx-auto w-full max-w-2xl px-4 pt-[calc(var(--header-height)+1.25rem)] pb-16 sm:px-6 sm:pb-20 md:px-12">
-          <div className="rounded-[1.6rem] bg-white p-5 ring-1 ring-ink/8 sm:rounded-[1.85rem] sm:p-8">
-            {step === "intro" ? <BravoIntro status={status} onStart={startForm} /> : null}
+      <StackPanel id="candidature" theme="white" pin={false} className="scroll-mt-[var(--header-height)]">
+        <div className="mx-auto w-full max-w-6xl px-4 pt-[calc(var(--header-height)+1rem)] pb-16 sm:px-6 sm:pb-20 md:px-12">
+          {step === "intro" ? <BravoIntro status={status} onStart={startForm} /> : null}
 
-            {step === "form" ? (
+          {step === "form" ? (
+            <div className="mx-auto max-w-xl rounded-[1.6rem] bg-white p-5 ring-1 ring-ink/8 sm:rounded-[1.85rem] sm:p-8">
               <BravoForm
                 utm={resolvedUtm}
                 canSubmit={status === "open"}
@@ -113,9 +113,11 @@ export function BravoCampaign({
                   document.getElementById("candidature")?.scrollIntoView({ behavior: "smooth" })
                 }}
               />
-            ) : null}
+            </div>
+          ) : null}
 
-            {step === "confirm" ? (
+          {step === "confirm" ? (
+            <div className="mx-auto max-w-xl rounded-[1.6rem] bg-white p-5 ring-1 ring-ink/8 sm:rounded-[1.85rem] sm:p-8">
               <BravoConfirm
                 numero={numero}
                 copy={copy}
@@ -128,8 +130,8 @@ export function BravoCampaign({
                   }
                 }}
               />
-            ) : null}
-          </div>
+            </div>
+          ) : null}
         </div>
       </StackPanel>
     </StackTrack>

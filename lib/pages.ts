@@ -15,7 +15,7 @@ export const quiSommesNous: PagePlaceholderProps = {
   title: "Qui sommes-nous ?",
   subtitle:
     "Une communauté camerounaise engagée à créer et faciliter de meilleures opportunités pour les Camerounais.",
-  cover: "community",
+  cover: "president",
   ctas: [{ label: "Rejoindre la communauté", href: "/devenir-membre" }],
   sections: [
     {
@@ -29,7 +29,7 @@ export const quiSommesNous: PagePlaceholderProps = {
     {
       id: "vision",
       layout: "image",
-      image: "landscape",
+      image: "leaders",
       title: "Notre vision",
       body: "Contribuer à l'émergence d'une génération de Camerounais mieux informés, mieux formés, mieux accompagnés et capables de saisir davantage d'opportunités. Une génération qui, à son tour, ouvre des portes.",
     },
@@ -74,7 +74,7 @@ export const quiSommesNous: PagePlaceholderProps = {
       id: "gouvernance",
       title: "Notre gouvernance",
       layout: "split",
-      image: "meeting",
+      image: "formal",
       body: [
         "The Pressing Community repose sur une organisation structurée : fondateurs, gouvernance, responsables, équipes et commissions. Une communauté qui agit sans pouvoir rendre compte finit par se perdre.",
         "Nous voulons une organisation lisible, responsable, capable d'expliquer ce qu'elle fait de l'argent, du temps et de la confiance qu'on lui confie. Les photos et fonctions des membres du bureau seront publiées ici dès qu'elles seront validées.",
@@ -304,7 +304,7 @@ export const jeunesse: PagePlaceholderProps = {
 export const devenirMembre: PagePlaceholderProps = {
   title: "Devenir membre de The Pressing Community",
   subtitle: "Faire partie d'une communauté qui cherche à progresser collectivement.",
-  cover: "circle",
+  cover: "team",
   ctas: [{ label: "Remplir ma demande d'adhésion", href: contactHref("Adhésion") }],
   sections: [
     {
@@ -485,7 +485,7 @@ export const proposerIdee: PagePlaceholderProps = {
 export const actualites: PagePlaceholderProps = {
   title: "Actualités",
   subtitle: "Nos actions, nos formations et les opportunités de la communauté.",
-  cover: "community",
+  cover: "formal",
   sections: [
     {
       title: "Aucun article publié pour le moment",

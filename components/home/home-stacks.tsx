@@ -15,7 +15,7 @@ export function HomeStacks() {
   return (
     <>
       <StackPanel theme="black">
-        <ImageField name="charity" label="Actions de la communauté" priority />
+        <ImageField name="crowd" label="Actions de la communauté" priority />
       </StackPanel>
 
       <StackPanel theme="white">
@@ -45,7 +45,7 @@ export function HomeStacks() {
       </StackPanel>
 
       <StackPanel theme="black">
-        <ImageField name="crowd" label={site.baseline} />
+        <ImageField name="collage" label={site.baseline} />
         <PanelContent className="justify-end">
           <FadeIn>
             <h2 className="max-w-3xl text-4xl leading-[1.08] text-white sm:text-4xl md:text-6xl lg:text-7xl max-sm:text-center">

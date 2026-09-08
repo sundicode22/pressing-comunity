@@ -46,7 +46,7 @@ export function ImageField({
         priority={priority}
         unoptimized
         decoding="async"
-        className="object-cover object-[center_20%]"
+        className="object-cover object-center"
       />
       {overlay ? (
         <div className="absolute inset-0 bg-linear-to-t from-ink/80 via-ink/25 to-ink/40" />
