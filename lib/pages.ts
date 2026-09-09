@@ -304,7 +304,7 @@ export const jeunesse: PagePlaceholderProps = {
 export const devenirMembre: PagePlaceholderProps = {
   title: "Devenir membre de The Pressing Community",
   subtitle: "Faire partie d'une communauté qui cherche à progresser collectivement.",
-  cover: "team",
+  cover: "community",
   ctas: [{ label: "Remplir ma demande d'adhésion", href: contactHref("Adhésion") }],
   sections: [
     {
@@ -405,7 +405,7 @@ export const mecene: PagePlaceholderProps = {
 export const partenaire: PagePlaceholderProps = {
   title: "Devenir partenaire",
   subtitle: "Construire un projet commun avec la communauté.",
-  cover: "team",
+  cover: "handshake",
   sections: [
     {
       layout: "split",

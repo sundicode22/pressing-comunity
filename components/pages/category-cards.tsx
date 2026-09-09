@@ -42,7 +42,7 @@ export function CategoryCards({
             <div
               className={cn(
                 "absolute inset-0 bg-linear-to-t via-ink/15 to-ink/25",
-                inverted ? "from-ink/70" : "from-ink/85"
+                inverted ? "from-ink/55" : "from-ink/60"
               )}
             />
             <p className="relative z-10 w-fit rounded-full bg-orange px-2.5 py-0.5 text-[11px] font-bold tracking-wide text-ink">

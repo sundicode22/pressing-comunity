@@ -12,7 +12,7 @@ export function PartnerView() {
   return (
     <StackTrack>
       <StackPanel theme="black" flush>
-        <ImageField name="team" label="Devenir partenaire" priority />
+        <ImageField name="handshake" label="Devenir partenaire" priority />
         <PanelContent className="items-center justify-end text-center">
           <FadeIn>
             <p className="text-[11px] sm:text-xs font-semibold uppercase tracking-[0.28em] text-orange">

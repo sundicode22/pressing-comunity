@@ -49,7 +49,7 @@ export function ImageField({
         className="object-cover object-center"
       />
       {overlay ? (
-        <div className="absolute inset-0 bg-linear-to-t from-ink/80 via-ink/25 to-ink/40" />
+        <div className="absolute inset-0 bg-linear-to-t from-ink/55 via-ink/10 to-ink/20" />
       ) : null}
     </div>
   )
